@@ -1,0 +1,89 @@
+{
+  "budget_ms": 20.0,
+  "candidates": 2,
+  "deadline_misses": 0,
+  "device": "cpu",
+  "horizon": 8,
+  "host": {
+    "architecture": "arm64",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.12.14",
+    "torch": "2.8.0"
+  },
+  "jetson_qualification": "unrun",
+  "live_advisory_promotion": false,
+  "max_rss_bytes": 213860352,
+  "power": "unknown",
+  "resolved_config": {
+    "action_dim": 4,
+    "architecture": {
+      "contact_shape": [
+        128
+      ],
+      "extension_shape": [
+        128
+      ],
+      "rnn_hidden_size": 256,
+      "rnn_num_layers": 2,
+      "rnn_type": "gru",
+      "state_logstd_shape": [
+        128
+      ],
+      "state_mean_shape": [
+        128
+      ],
+      "termination_shape": [
+        128
+      ],
+      "type": "rnn"
+    },
+    "auxiliary_label_policy": "disabled-unless-real-labels-exist",
+    "bootstrap": false,
+    "contact_dim": 0,
+    "core_commit": "18eebcdd7145284c8d5eed5d8ed1a4b96c649693",
+    "device": "cpu",
+    "ensemble_size": 5,
+    "extension_dim": 0,
+    "forecast_horizon": 8,
+    "history_horizon": 32,
+    "lite_commit": "13a798e9d35dabf12c0e6e02977b25ec64dfb2bd",
+    "loss": "sampled_mse",
+    "method": "RWM-U-source/carry-isolated-v1",
+    "state_dim": 8,
+    "termination_dim": 0,
+    "timestep_us": 20000
+  },
+  "samples": 30,
+  "serialized_bytes": 26835,
+  "simultaneous_vision_load": "unrun",
+  "thermal": "unknown",
+  "threads": 1,
+  "timings": {
+    "end_to_end_ms": {
+      "max": 18.934458,
+      "p50": 17.990167,
+      "p95": 18.765417,
+      "p99": 18.934458
+    },
+    "native_inference_ms": {
+      "max": 18.515875,
+      "p50": 17.559584,
+      "p95": 18.315125,
+      "p99": 18.515875
+    },
+    "queue_ms": {
+      "max": 0.018334,
+      "p50": 0.014959,
+      "p95": 0.017916,
+      "p99": 0.018334
+    },
+    "serialization_ms": {
+      "max": 0.469,
+      "p50": 0.41675,
+      "p95": 0.45675,
+      "p99": 0.469
+    }
+  },
+  "warmup": 3,
+  "weights": "checksum-validated frozen package"
+}

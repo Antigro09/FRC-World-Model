@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+artifacts/
+# Reference-only ANYmal assets are preserved locally, excluded from service/commits.
+vendor/reference/**/assets/
+vendor/reference/**/scripts/img/
+vendor/reference/**/*.png

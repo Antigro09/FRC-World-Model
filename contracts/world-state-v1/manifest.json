@@ -1,0 +1,14 @@
+{
+  "files": {
+    "PREDICTION_CONTRACT.md": "1cd9865af396901719f6537544a8491287aad8141b6ca30ff1b09d1a71112366",
+    "prediction-reply-v1.schema.json": "5d05c7fef9f08ed1d4196c64455c623b6cd1b489852fa609c65bccab03e6cc14",
+    "prediction-request-v1.schema.json": "4fe241f505bc6055d9526bfb7dda996a7838cfcbdc12f5c636989cc9c1d5f658",
+    "reply-v1.json": "7e2a3252ca2792d80fdaa700e778de5c3d8a547328cb171af575df895e61bc75",
+    "request-v1.json": "d232d9d8b5aac65f8ac2db191bfeb03d0d3c0e23301333fb3039142f735e4b4b"
+  },
+  "owner": "FRC-World-State",
+  "source_commit": "1f8b9aace3fd320e3545744e3125aa348089bc99",
+  "source_commit_role": "historical semantic pin; exact exported bytes verified independently of Git history",
+  "source_repository": "https://github.com/Antigro09/FRC-World-State",
+  "version": "frc-prediction/1"
+}

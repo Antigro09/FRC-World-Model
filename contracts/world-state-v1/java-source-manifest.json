@@ -1,0 +1,11 @@
+{
+  "semantic_source_commit": "1f8b9aace3fd320e3545744e3125aa348089bc99",
+  "source_repository": "https://github.com/Antigro09/FRC-World-State",
+  "source_sha256": {
+    "src/main/java/org/frcworldstate/core/Geometry.java": "4dc7c42e1c196681fcd8c176dc9cc9aa132def99da805d7838b26344375c8b28",
+    "src/main/java/org/frcworldstate/core/PredictionGate.java": "b8d185c1129d523381d7984d106b0510bc48d5253734f090680842b338689966",
+    "src/main/java/org/frcworldstate/core/Predictor.java": "22f003c7b223fb2329d5bbde85056d9087056449f15ff2f0e51f2265cf4ab018",
+    "src/main/java/org/frcworldstate/core/World.java": "7157b4ded74429d8e372b35f3e0aa13f49187e1b75019f000555ec2117378bf3",
+    "src/test/java/org/frcworldstate/core/PredictionContractTest.java": "fd652ddd88696645ce3a406ee54b8b08a6092d80579f166c0ffbc1707b3a032c"
+  }
+}

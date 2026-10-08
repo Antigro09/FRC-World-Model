@@ -1,0 +1,897 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://frcworldstate.local/schemas/prediction-request-v1.schema.json",
+  "title": "FRC prediction request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "model_id",
+    "request_id",
+    "snapshot_id",
+    "epoch",
+    "field",
+    "source",
+    "frame",
+    "timestamp_domain",
+    "history_cutoff_us",
+    "valid_until_us",
+    "horizon_us",
+    "step_us",
+    "sync",
+    "issued_us",
+    "history",
+    "targets",
+    "candidates"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "frc-prediction/1"
+    },
+    "model_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "\\S"
+    },
+    "request_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256,
+      "pattern": "\\S"
+    },
+    "snapshot_id": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "epoch": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "field": {
+      "$ref": "#/$defs/field"
+    },
+    "source": {
+      "$ref": "#/$defs/source"
+    },
+    "frame": {
+      "enum": [
+        "BLUE_FIELD"
+      ]
+    },
+    "timestamp_domain": {
+      "enum": [
+        "ROBOT_MONOTONIC_US"
+      ]
+    },
+    "history_cutoff_us": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "valid_until_us": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "horizon_us": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "step_us": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "sync": {
+      "$ref": "#/$defs/sync"
+    },
+    "issued_us": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/history"
+      },
+      "minItems": 1,
+      "maxItems": 128
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/target"
+      },
+      "minItems": 1,
+      "maxItems": 32
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/candidate"
+      },
+      "minItems": 1,
+      "maxItems": 16
+    }
+  },
+  "$defs": {
+    "vec2": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "x",
+        "y"
+      ],
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        }
+      }
+    },
+    "covariance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "xx_m2",
+        "xy_m2",
+        "yy_m2"
+      ],
+      "properties": {
+        "xx_m2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "xy_m2": {
+          "type": "number"
+        },
+        "yy_m2": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "season",
+        "map_id",
+        "geometry_revision"
+      ],
+      "properties": {
+        "season": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "map_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "geometry_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "robot_boot_id",
+        "localization_revision",
+        "configuration_revision"
+      ],
+      "properties": {
+        "robot_boot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "localization_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "configuration_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        }
+      }
+    },
+    "sync": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "mapping_revision",
+        "valid",
+        "maximum_error_us"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "mapping_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "maximum_error_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        }
+      }
+    },
+    "pose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "position_m",
+        "heading_rad"
+      ],
+      "properties": {
+        "position_m": {
+          "$ref": "#/$defs/vec2"
+        },
+        "heading_rad": {
+          "type": "number",
+          "minimum": -3.141592653589793,
+          "maximum": 3.141592653589793
+        }
+      }
+    },
+    "velocity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "linear_mps",
+        "angular_radps"
+      ],
+      "properties": {
+        "linear_mps": {
+          "$ref": "#/$defs/vec2"
+        },
+        "angular_radps": {
+          "type": "number"
+        }
+      }
+    },
+    "ego": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "time_us",
+        "field_pose",
+        "field_velocity",
+        "uncertainty",
+        "localization_valid"
+      ],
+      "properties": {
+        "time_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "field_pose": {
+          "$ref": "#/$defs/pose"
+        },
+        "field_velocity": {
+          "$ref": "#/$defs/velocity"
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/covariance"
+        },
+        "localization_valid": {
+          "type": "boolean"
+        }
+      }
+    },
+    "stamp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_id",
+        "boot_id",
+        "calibration_revision",
+        "mount_revision",
+        "correlation_group",
+        "sequence",
+        "capture_us",
+        "publication_us",
+        "target_height_m"
+      ],
+      "properties": {
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "boot_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "calibration_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "mount_revision": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "correlation_group": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "capture_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "publication_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "target_height_m": {
+          "type": "number"
+        }
+      }
+    },
+    "track": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "epoch",
+        "object_class",
+        "position_m",
+        "velocity_mps",
+        "estimate_us",
+        "last_measurement_us",
+        "confidence",
+        "uncertainty",
+        "lifecycle",
+        "estimate_kind",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "epoch": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "object_class": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "position_m": {
+          "$ref": "#/$defs/vec2"
+        },
+        "velocity_mps": {
+          "$ref": "#/$defs/vec2"
+        },
+        "estimate_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "last_measurement_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "uncertainty": {
+          "$ref": "#/$defs/covariance"
+        },
+        "lifecycle": {
+          "enum": [
+            "TENTATIVE",
+            "CONFIRMED",
+            "COASTING"
+          ]
+        },
+        "estimate_kind": {
+          "enum": [
+            "MEASURED",
+            "PROPAGATED"
+          ]
+        },
+        "provenance": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/stamp"
+          },
+          "minItems": 0,
+          "maxItems": 256
+        }
+      }
+    },
+    "twist": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "vx_mps",
+        "vy_mps",
+        "omega_radps"
+      ],
+      "properties": {
+        "vx_mps": {
+          "type": "number"
+        },
+        "vy_mps": {
+          "type": "number"
+        },
+        "omega_radps": {
+          "type": "number"
+        }
+      }
+    },
+    "mechanism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "channel",
+        "unit",
+        "value"
+      ],
+      "properties": {
+        "channel": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "unit": {
+          "enum": [
+            "m",
+            "m/s",
+            "rad",
+            "rad/s",
+            "ratio",
+            "bool"
+          ]
+        },
+        "value": {
+          "type": "number"
+        }
+      }
+    },
+    "snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "epoch",
+        "obstacle_map_version",
+        "field",
+        "ego",
+        "tracks"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "epoch": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "obstacle_map_version": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "field": {
+          "$ref": "#/$defs/field"
+        },
+        "ego": {
+          "$ref": "#/$defs/ego"
+        },
+        "tracks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/track"
+          },
+          "minItems": 0,
+          "maxItems": 256
+        }
+      }
+    },
+    "accepted_command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "command_id",
+        "source_id",
+        "authority",
+        "frame",
+        "issued_us",
+        "accepted_us",
+        "body_twist",
+        "mechanisms"
+      ],
+      "properties": {
+        "command_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "source_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "authority": {
+          "enum": [
+            "ACCEPTED"
+          ]
+        },
+        "frame": {
+          "enum": [
+            "ROBOT_RELATIVE"
+          ]
+        },
+        "issued_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "accepted_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "body_twist": {
+          "$ref": "#/$defs/twist"
+        },
+        "mechanisms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mechanism"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      }
+    },
+    "history": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "snapshot",
+        "valid_mask",
+        "accepted_command"
+      ],
+      "properties": {
+        "snapshot": {
+          "$ref": "#/$defs/snapshot"
+        },
+        "valid_mask": {
+          "type": "boolean"
+        },
+        "accepted_command": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/accepted_command"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      }
+    },
+    "target": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_id",
+            "kind",
+            "track_id"
+          ],
+          "properties": {
+            "target_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "\\S"
+            },
+            "kind": {
+              "enum": [
+                "EGO"
+              ]
+            },
+            "track_id": {
+              "type": "null"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target_id",
+            "kind",
+            "track_id"
+          ],
+          "properties": {
+            "target_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 256,
+              "pattern": "\\S"
+            },
+            "kind": {
+              "enum": [
+                "OBJECT_TRACK"
+              ]
+            },
+            "track_id": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            }
+          }
+        }
+      ]
+    },
+    "action_sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "offset_us",
+        "body_twist",
+        "mechanisms"
+      ],
+      "properties": {
+        "offset_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "body_twist": {
+          "$ref": "#/$defs/twist"
+        },
+        "mechanisms": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/mechanism"
+          },
+          "minItems": 0,
+          "maxItems": 32
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "authority",
+        "semantics",
+        "frame",
+        "samples"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "authority": {
+          "enum": [
+            "CANDIDATE"
+          ]
+        },
+        "semantics": {
+          "enum": [
+            "BODY_TWIST_OPEN_LOOP_V1"
+          ]
+        },
+        "frame": {
+          "enum": [
+            "ROBOT_RELATIVE"
+          ]
+        },
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action_sample"
+          },
+          "minItems": 1,
+          "maxItems": 256
+        }
+      }
+    },
+    "forecast_sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "offset_us",
+        "valid_mask",
+        "x_m",
+        "y_m",
+        "vx_mps",
+        "vy_mps",
+        "covariance_xx_m2",
+        "covariance_xy_m2",
+        "covariance_yy_m2",
+        "confidence"
+      ],
+      "properties": {
+        "offset_us": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "valid_mask": {
+          "type": "boolean"
+        },
+        "x_m": {
+          "type": "number"
+        },
+        "y_m": {
+          "type": "number"
+        },
+        "vx_mps": {
+          "type": "number"
+        },
+        "vy_mps": {
+          "type": "number"
+        },
+        "covariance_xx_m2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "covariance_xy_m2": {
+          "type": "number"
+        },
+        "covariance_yy_m2": {
+          "type": "number",
+          "minimum": 0
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "valid_mask": {
+                "const": false
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "x_m": {
+                "const": 0
+              },
+              "y_m": {
+                "const": 0
+              },
+              "vx_mps": {
+                "const": 0
+              },
+              "vy_mps": {
+                "const": 0
+              },
+              "covariance_xx_m2": {
+                "const": 0
+              },
+              "covariance_xy_m2": {
+                "const": 0
+              },
+              "covariance_yy_m2": {
+                "const": 0
+              },
+              "confidence": {
+                "const": null
+              }
+            }
+          }
+        }
+      ]
+    },
+    "forecast": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidate_id",
+        "target_id",
+        "samples"
+      ],
+      "properties": {
+        "candidate_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "target_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "\\S"
+        },
+        "samples": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/forecast_sample"
+          },
+          "minItems": 1,
+          "maxItems": 256
+        }
+      }
+    }
+  }
+}

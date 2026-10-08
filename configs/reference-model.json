@@ -1,0 +1,39 @@
+{
+  "action_dim": 4,
+  "architecture": {
+    "contact_shape": [
+      128
+    ],
+    "extension_shape": [
+      128
+    ],
+    "rnn_hidden_size": 256,
+    "rnn_num_layers": 2,
+    "rnn_type": "gru",
+    "state_logstd_shape": [
+      128
+    ],
+    "state_mean_shape": [
+      128
+    ],
+    "termination_shape": [
+      128
+    ],
+    "type": "rnn"
+  },
+  "auxiliary_label_policy": "disabled-unless-real-labels-exist",
+  "bootstrap": false,
+  "contact_dim": 0,
+  "core_commit": "18eebcdd7145284c8d5eed5d8ed1a4b96c649693",
+  "device": "cpu",
+  "ensemble_size": 5,
+  "extension_dim": 0,
+  "forecast_horizon": 8,
+  "history_horizon": 32,
+  "lite_commit": "13a798e9d35dabf12c0e6e02977b25ec64dfb2bd",
+  "loss": "sampled_mse",
+  "method": "RWM-U-source/carry-isolated-v1",
+  "state_dim": 8,
+  "termination_dim": 0,
+  "timestep_us": 20000
+}

@@ -1,0 +1,157 @@
+{
+  "artifact_sha256": {
+    "artifacts/smoke-input-v3/synthetic.jsonl": "407a2e24a5db9d36f11a4f89a3693b4ec4584b6388e65ee4a0b5a62711ea0a77",
+    "artifacts/smoke-package-v3/config.json": "7857c4fb72ad55be51852c37dd0adc2545ed89f62e52b66db5da7c27a829f0c0",
+    "artifacts/smoke-package-v3/manifest.json": "19b0e1f3b6458b6066b5add12c1af9722295cff6ef2cca1e7eb2d76f0ebc6105",
+    "artifacts/smoke-package-v3/weights.pt": "67730743598b93c96965803265d7a67ce5d2f733c16b66ed0cb368e48116928d",
+    "artifacts/smoke-validation-v3.json": "d93fd953290ed4f8c337abaffd171331868521a1bcbdd6db2aa07d0183100e46"
+  },
+  "device": "cpu",
+  "final_test": "uninspected; no real physical tolerances supplied",
+  "jetson_qualification": "unrun",
+  "model_manifest": {
+    "artifacts": {
+      "calibration": {
+        "path": "calibration.json",
+        "sha256": "1ce200b63ef07ccd5437e83401240ef8c01ef0fa4034b17fdae91f836e94f699"
+      },
+      "config": {
+        "path": "config.json",
+        "sha256": "7857c4fb72ad55be51852c37dd0adc2545ed89f62e52b66db5da7c27a829f0c0"
+      },
+      "dataset": {
+        "path": "dataset.json",
+        "sha256": "abaa1515d66939e895c2e8dd8b42602cabb22e622ff7f0db18269faf87d63002"
+      },
+      "normalization": {
+        "path": "normalization.json",
+        "sha256": "03e89ba5a982dc65670f5ef02668aa5b04d8d5eac732b1c7e6f3d7f671e49a34"
+      },
+      "schema": {
+        "path": "schema.json",
+        "sha256": "4c07e32b8b54e609b758d9363e10350bc8406bcf1e0ac967d69fc2265ff026bf"
+      },
+      "training": {
+        "path": "training.json",
+        "sha256": "f28012b11532ba27cb14e7f587545b4d98d2267ab4554cecb0003b1131960b6e"
+      },
+      "weights": {
+        "path": "weights.pt",
+        "sha256": "67730743598b93c96965803265d7a67ce5d2f733c16b66ed0cb368e48116928d"
+      }
+    },
+    "claims": "tiny training proves plumbing only; uncalibrated advisory predictor",
+    "config_sha256": "ddb7ba9e1dbdb118b7baf789233721ae79306d00de8b29f2c9b95e162c9ed160",
+    "format": "frc-world-model-frozen-v1",
+    "influences_commands": false,
+    "layout_id": "411d8f96e7809eb7284739fa58ce59b6a32a59f992a6873a6d7e8cd79f44cdaa",
+    "mode": "replay/shadow",
+    "model_id": "frc-rwm-67730743598b93c9",
+    "model_kind": "rwm-u",
+    "schema_version": "frc-world-model-local-log-v1-pending-binding"
+  },
+  "scope": "synthetic plumbing only; no FRC accuracy/covariance/ranking claim",
+  "threads": 1,
+  "training": {
+    "batch_size": 4,
+    "bootstrap": false,
+    "device": "cpu",
+    "duration_s": 0.1455290000885725,
+    "external_logging": false,
+    "losses": [
+      2.405085802078247,
+      2.2724103927612305
+    ],
+    "method": "RWM-U-source/carry-isolated-v1",
+    "optimizer": {
+      "learning_rate": 0.0001,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "seed": 0,
+    "selected_loss": "upstream sampled MSE + bound regularization",
+    "updates": 2
+  },
+  "uncertainty": "uncalibrated",
+  "validation_counts": {
+    "one_step": {
+      "analytical": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "constant_velocity": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "persistence": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm-action-ablation": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm-history-ablation": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      }
+    },
+    "open_loop": {
+      "analytical": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "constant_velocity": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "persistence": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm-action-ablation": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm-history-ablation": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      }
+    },
+    "refreshed": {
+      "analytical": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "constant_velocity": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "persistence": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm-action-ablation": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      },
+      "rwm-history-ablation": {
+        "missing_predictions": {},
+        "successful_windows": 6
+      }
+    }
+  },
+  "vision_coexistence": "unrun"
+}

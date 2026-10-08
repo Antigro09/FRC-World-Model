@@ -1,0 +1,40 @@
+{
+  "branch": "main",
+  "component": "FRC-World-Model",
+  "contracts": {
+    "files": {
+      "PREDICTION_CONTRACT.md": "1cd9865af396901719f6537544a8491287aad8141b6ca30ff1b09d1a71112366",
+      "prediction-reply-v1.schema.json": "5d05c7fef9f08ed1d4196c64455c623b6cd1b489852fa609c65bccab03e6cc14",
+      "prediction-request-v1.schema.json": "4fe241f505bc6055d9526bfb7dda996a7838cfcbdc12f5c636989cc9c1d5f658",
+      "reply-v1.json": "7e2a3252ca2792d80fdaa700e778de5c3d8a547328cb171af575df895e61bc75",
+      "request-v1.json": "d232d9d8b5aac65f8ac2db191bfeb03d0d3c0e23301333fb3039142f735e4b4b"
+    },
+    "owner": "FRC-World-State",
+    "source_commit": "1f8b9aace3fd320e3545744e3125aa348089bc99",
+    "source_commit_role": "historical semantic pin; exact exported bytes verified independently of Git history",
+    "source_repository": "https://github.com/Antigro09/FRC-World-State",
+    "version": "frc-prediction/1"
+  },
+  "influences_commands": false,
+  "jetson_qualification": "unrun",
+  "method": "RWM-U-source/carry-isolated-v1",
+  "mode": "offline/replay/shadow",
+  "physical_calibration": "unavailable",
+  "reference_commits": {
+    "rwm_core": "18eebcdd7145284c8d5eed5d8ed1a4b96c649693",
+    "rwm_lite": "13a798e9d35dabf12c0e6e02977b25ec64dfb2bd"
+  },
+  "repository": "https://github.com/Antigro09/FRC-World-Model",
+  "robot_integration": "on hold",
+  "source_sha256": {
+    "configs/reference-model.json": "7857c4fb72ad55be51852c37dd0adc2545ed89f62e52b66db5da7c27a829f0c0",
+    "frc_world_model/bindings.py": "f7a3af0ee2a5736010aa042384f0081100b2d6c08b40321e56dc83ffbf2f6d06",
+    "frc_world_model/converter.py": "dd7ac08cd5049e7c7f003426787d7875aa7376f42acff38a0e281e5b59645191",
+    "frc_world_model/frozen.py": "0ee72afaed27e430ae83dea55e0993b3902c54bd2432a29388894216672ed84b",
+    "frc_world_model/rwm.py": "ba2098af537ce65cd8912f7d5b643b95f93874e44e241c9377c323089917f0da",
+    "frc_world_model/wire_runtime.py": "bb844c99e21ec8fba7b107a85072d774e78c8304378c050fef871fd070d29a88"
+  },
+  "wire_model_prerequisites": "matched ego6/body3 frozen package, valid fixed history/complete accepted commands and mapped robot time; current replies always abstain",
+  "world_state_latest_stack_checked": "209743312e33ec926d2f20e995eaca8daa2f8742",
+  "world_state_semantic_pin": "1f8b9aace3fd320e3545744e3125aa348089bc99"
+}

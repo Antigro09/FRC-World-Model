@@ -1,0 +1,9 @@
+{
+  "anymal_actor_simulator_included": false,
+  "bytes": 63518,
+  "core_license_packaged": true,
+  "schemas_packaged": true,
+  "sha256": "da7bc1e99507e2747e4a2102df41e778a84bcdba9c34b464e55d05e42c9f1f1a",
+  "source_byte_parity": true,
+  "wheel": "artifacts/wheels-final/frc_world_model-0.1.0-py3-none-any.whl"
+}
