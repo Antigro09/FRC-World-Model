@@ -98,3 +98,14 @@ source/capture/sync/session identities and known labels, with predictions having
 no command influence. Real training/calibration/device experiments require their
 own approved scope. Live advisory promotion needs held-out, on-device and shadow
 evidence plus explicit approval; robot integration stays on hold.
+
+## Publication portability verification
+
+A clean local clone of the reviewed `main` snapshot passed all 149 Python tests
+and built the wheel using the previously installed, pinned CPU test environment.
+No other component checkout was needed for ordinary Python setup/tests/build.
+Fresh dependency installation on another host is unrun. The optional Java check
+passed with the explicit byte-verified checkout override. Public history excludes
+local coordination/permission notes and private filesystem paths; the original
+development history is retained only locally. `docs/evidence/package.json`
+records the sanitized wheel checksum. No model weights or datasets are published.
