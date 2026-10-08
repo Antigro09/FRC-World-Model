@@ -109,3 +109,11 @@ passed with the explicit byte-verified checkout override. Public history exclude
 local coordination/permission notes and private filesystem paths; the original
 development history is retained only locally. `docs/evidence/package.json`
 records the sanitized wheel checksum. No model weights or datasets are published.
+
+The optional Java check was subsequently verified against a fresh public
+World-State clone at `0e5b6c3f85d47205cde8b0c80e13fa79d35e95ab`: all five
+Java source hashes and both schema/fixture pairs matched, 109 Java assertions
+passed, and Java emission/Python consumption plus masked baseline parity passed.
+The public export manifest hash also matched. This is a metadata-only handoff;
+model/runtime/schema bytes and hardware limits are unchanged. Evidence is in
+`evidence/world-state-public-verification.json`.

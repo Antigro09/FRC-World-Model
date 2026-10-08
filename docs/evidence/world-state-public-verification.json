@@ -1,6 +1,18 @@
 {
+  "abstention_semantic_parity": "passed",
+  "contract_sha256": {
+    "prediction-reply-v1.schema.json": "5d05c7fef9f08ed1d4196c64455c623b6cd1b489852fa609c65bccab03e6cc14",
+    "prediction-request-v1.schema.json": "4fe241f505bc6055d9526bfb7dda996a7838cfcbdc12f5c636989cc9c1d5f658",
+    "reply-v1.json": "7e2a3252ca2792d80fdaa700e778de5c3d8a547328cb171af575df895e61bc75",
+    "request-v1.json": "d232d9d8b5aac65f8ac2db191bfeb03d0d3c0e23301333fb3039142f735e4b4b"
+  },
+  "fresh_public_clone": true,
+  "golden_java_emission_python_consumption": "passed",
+  "java_assertions_passed": 109,
+  "java_gate_baseline": "UNCALIBRATED",
   "public_export_manifest_sha256": "d7736f1acfbee0ba19ec1f095782a1f2ef290aba41d61035b6827170c6d9d91e",
-  "semantic_source_commit": "1f8b9aace3fd320e3545744e3125aa348089bc99",
+  "robot_integration": "unrun",
+  "runtime_schema_changes": false,
   "source_repository": "https://github.com/Antigro09/FRC-World-State",
   "source_sha256": {
     "src/main/java/org/frcworldstate/core/Geometry.java": "4dc7c42e1c196681fcd8c176dc9cc9aa132def99da805d7838b26344375c8b28",

@@ -110,3 +110,19 @@ history. An explicit `--working-tree` local checkout override is also supported
 and verifies those same source hashes. No private absolute path is a default.
 The ordinary Python setup, test suite and package build are self-contained and
 require no other component checkout or published Maven artifact.
+
+Verified reachable public source commit:
+[`0e5b6c3f85d47205cde8b0c80e13fa79d35e95ab`](https://github.com/Antigro09/FRC-World-State/tree/0e5b6c3f85d47205cde8b0c80e13fa79d35e95ab).
+A fresh public checkout matched every consumed Java/schema/fixture hash and
+passed the cross-language check. The historical semantic pin and exact v1 bytes
+are retained; this adds no model runtime dependency and requires no circular
+repinning of other repositories.
+
+```sh
+git clone https://github.com/Antigro09/FRC-World-State.git artifacts/world-state
+git -C artifacts/world-state checkout --detach 0e5b6c3f85d47205cde8b0c80e13fa79d35e95ab
+.venv/bin/python tools/verify_cross_language.py artifacts/world-state --source-ref 0e5b6c3f85d47205cde8b0c80e13fa79d35e95ab --output-directory artifacts/public-cross-language
+```
+
+Use new output directories. The explicit hash-verified working-tree override
+remains available; ordinary Python tests/build remain self-contained.

@@ -36,5 +36,7 @@
   },
   "wire_model_prerequisites": "matched ego6/body3 frozen package, valid fixed history/complete accepted commands and mapped robot time; current replies always abstain",
   "world_state_latest_stack_checked": "209743312e33ec926d2f20e995eaca8daa2f8742",
-  "world_state_semantic_pin": "1f8b9aace3fd320e3545744e3125aa348089bc99"
+  "world_state_public_export_manifest_sha256": "d7736f1acfbee0ba19ec1f095782a1f2ef290aba41d61035b6827170c6d9d91e",
+  "world_state_semantic_pin": "1f8b9aace3fd320e3545744e3125aa348089bc99",
+  "world_state_verified_public_source_commit": "0e5b6c3f85d47205cde8b0c80e13fa79d35e95ab"
 }
