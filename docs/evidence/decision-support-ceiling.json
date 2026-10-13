@@ -1,0 +1,14 @@
+{
+  "candidates": 8,
+  "computation_budget_ms": 250.0,
+  "elapsed_ms": 272.82275,
+  "horizon_us": 2000000,
+  "max_rss_bytes": 39501824,
+  "obstacles": 128,
+  "physical_safety_certified": false,
+  "reason": "decision-expired-or-budget-exhausted",
+  "request_bytes": 143530,
+  "samples_per_candidate": 101,
+  "scope": "one bounded synthetic ceiling scene; no learned model or physical qualification",
+  "status": "REJECTED"
+}

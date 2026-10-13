@@ -1,0 +1,34 @@
+{
+  "actuator_owner": "roboRIO",
+  "component": "FRC-World-Model adaptive advisory decisions",
+  "contract": "contracts/decision-support-v1/manifest.json",
+  "influences_commands": false,
+  "learned_task_readiness": "unavailable; current frozen wire replies remain masked abstention",
+  "measured_state_owner": "FRC-World-State",
+  "mode": [
+    "replay",
+    "shadow"
+  ],
+  "physical_qualification": "unavailable",
+  "pose_owner": "Drive",
+  "resources": {
+    "max_async_pending": 1,
+    "max_candidates": 8,
+    "max_history": 32,
+    "max_obstacles": 128,
+    "max_optional_inference_outstanding": 1,
+    "max_samples": 101,
+    "request_reply_max_bytes": 1000000
+  },
+  "source_sha256": {
+    "frc_world_model/decision_bindings.py": "df3d1b3f43a9f67f6f466a35036fe4325e76502887441d9b768fda1b880ed6ff",
+    "frc_world_model/decision_dynamics.py": "b13d4bfd5321e4473b8aa3cd4105b1809c90d0a5d7f7ec5cdf390f86c46ecd29",
+    "frc_world_model/decision_learning.py": "add1aaebf3fb44017c036ad2cd4cd62a534fc049d963fd3ebec41d8e90e62046",
+    "frc_world_model/decision_schema.py": "d8e4133e0a9747088095101899e34f1b937b1c156ebac52d1a66022a78afcada",
+    "frc_world_model/decision_service.py": "02b7240fa903ac29a43bafba1cd5fd704d04bf408f4126a74b454095a666795e"
+  },
+  "starting_commit": "ff5773923168acc6e39087aa583e67b619224609",
+  "upstream_contract": "contracts/world-state-v1/manifest.json",
+  "validation": "docs/evidence/decision-support-validation.json",
+  "version": "frc-decision-support/1"
+}

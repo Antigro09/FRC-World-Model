@@ -1,0 +1,20 @@
+{
+  "policy_id": "synthetic-decision-policy-v1",
+  "wire_policy": {
+    "model_calibrations": {"fixture-model-v1": ["synthetic-calibration-v1"]},
+    "allowed_fields": [["OFFSEASON_2026", "synthetic-field-v1", "geometry-v1"]],
+    "allowed_configuration_revisions": ["robot-config-v1"],
+    "min_x_m": -20.0, "min_y_m": -20.0, "max_x_m": 20.0, "max_y_m": 20.0,
+    "max_speed_mps": 3.0, "max_omega_radps": 5.0,
+    "min_variance_m2": 0.000001, "max_variance_m2": 10.0,
+    "max_initial_offset_m": 0.2, "max_horizon_us": 300000,
+    "max_history_age_us": 500000, "max_sync_error_us": 1000,
+    "mechanisms": {"intake_enabled": ["bool", 0.0, 1.0]}
+  },
+  "footprint_radius_m": 0.3, "clearance_margin_m": 0.05,
+  "uncertainty_sigma": 2.0, "ego_error_growth_mps": 0.2,
+  "obstacle_error_growth_mps": 0.2, "nominal_speed_mps": 1.0,
+  "travel_cost_per_m": 0.5, "time_cost_per_s": 0.2,
+  "risk_cost": 1.0, "uncertainty_cost_per_m": 0.5,
+  "switching_cost": 1.0, "progress_reward_per_m": 1.0
+}

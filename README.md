@@ -1,13 +1,35 @@
 # FRC-World-Model
 
-Frozen structured-state, action-conditioned prediction for **offline replay and
-shadow review**. Robot-code integration, deployment and motion remain
+Bounded adaptive task recommendations and frozen action-conditioned prediction
+for **offline replay and shadow review**. Robot-code integration, deployment and motion remain
 on hold. Source: [Antigro09/FRC-World-Model](https://github.com/Antigro09/FRC-World-Model).
 
-The service owns neither tracking nor pose fusion, planning, commands or safety
-interlocks. Missing, rejected or uncalibrated learned forecasts preserve the
-analytical baseline. No raw video, policy/actor training, online exploration,
-simulator or CAN/motor interface is involved.
+The decision service proposes which supplied high-level task to consider next.
+It ranks pickup, score, transit and hold candidates using measured prerequisites,
+short-horizon action forecasts, supplied path evidence, utility, travel/risk/
+uncertainty and switching costs. It owns neither tracking nor pose fusion,
+path planning, commands or safety interlocks. Missing, rejected or uncalibrated
+learned forecasts preserve deterministic adaptive selection. No raw video,
+policy/actor training, online exploration or CAN/motor interface is involved.
+
+The new `frc-decision-support/1` companion contract embeds the unchanged
+World-State `frc-prediction/1` request. It includes task/context revisions,
+action/request hashes, measured possession/readiness availability, conservative
+occupancy and service/generation/source fences. Kinematic assumptions have null
+physical covariance; learned evidence requires the original approved wire reply.
+Task success, completion time and mechanism outcomes remain unknown.
+
+```sh
+.venv/bin/python tools/replay_decisions.py contracts/decision-support-v1/request-v1.json --policy configs/decision-synthetic.json --output artifacts/new-decision-replay.json
+.venv/bin/python tools/benchmark_decisions.py --runs 60 --output artifacts/new-decision-benchmark.json
+```
+
+The policy and scene above are synthetic software fixtures. They are not robot
+physical parameters. The replay output saves its boot-fenced request and reply;
+`--loopback` additionally exercises bounded localhost NDJSON. See
+[decision interface and integration handoff](docs/DECISION_SUPPORT.md),
+[wire semantics](contracts/decision-support-v1/DECISION_CONTRACT.md), and
+[offline task data/evaluation](docs/DECISION_LEARNING.md).
 
 The implementation reuses actual pinned RWM `SystemDynamicsEnsemble`, `RNNBase`
 GRU and state/auxiliary heads. The reference configuration has two GRU layers

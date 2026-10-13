@@ -1,0 +1,18 @@
+{
+  "files": {
+    "DECISION_CONTRACT.md": "308a25fb0b635a5c08024e6ddf642946c324ea39f67e452df8f292b05468193b",
+    "decision-reply-v1.schema.json": "0493242fde746215a247bbe5abeb1cf945a41b15e80df9186f8045f8db41e6de",
+    "decision-request-v1.schema.json": "142ca85ef7985426c906cd89be2b9d63b2e1e3bba34644546dda9702aff0def7",
+    "reply-v1.json": "99affeabe2988eedb917bd9a357491d1d31b927e704c3707b6861e9736627668",
+    "request-v1.json": "86b2d8902992ddacfed0ff634ec6885967096151bc36a23d11f69e412dafe9ad"
+  },
+  "influences_commands": false,
+  "mode": [
+    "replay",
+    "shadow"
+  ],
+  "owner": "FRC-World-Model",
+  "prediction_contract_owner": "FRC-World-State",
+  "prediction_contract_version": "frc-prediction/1",
+  "schema_version": "frc-decision-support/1"
+}

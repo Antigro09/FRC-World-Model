@@ -1,0 +1,1421 @@
+{
+  "baseline_loopback_agreement": 60,
+  "candidates": 3,
+  "horizon_us": 200000,
+  "host": {
+    "architecture": "arm64",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.12.14"
+  },
+  "influences_commands": false,
+  "learned_provider": "synthetic kinematic fixture with synthetic covariance; no accuracy claim",
+  "max_rss_bytes": 35061760,
+  "observations": [
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "pickup-piece-100",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "pickup-piece-100",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "pickup-piece-100",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "empty-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "score-zone",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "score-zone",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "score-zone",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "held-ready"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "unknown-possession"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "readiness-dropout"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "obstacle-change"
+    },
+    {
+      "results": {
+        "direct-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "loopback-baseline": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-unavailable",
+          "selected_task_id": "hold",
+          "status": "BASELINE"
+        },
+        "synthetic-provider": {
+          "baseline_selected_task_id": "hold",
+          "learned_status": "learned-qualified-shadow-only",
+          "selected_task_id": "hold",
+          "status": "LEARNED_ADVISORY"
+        }
+      },
+      "scenario": "delayed-target"
+    }
+  ],
+  "physical_safety_certified": false,
+  "robot_latency_qualification": "unrun",
+  "runs": 60,
+  "scope": "bounded synthetic replay and localhost NDJSON; no hardware, trained model or physical qualification",
+  "simultaneous_perception_load": "unrun",
+  "synthetic_provider_baseline_agreement": 60,
+  "timings_ms": {
+    "direct-baseline": {
+      "max": 10.273625,
+      "p50": 7.284166,
+      "p95": 7.758917,
+      "p99": 7.923667
+    },
+    "loopback-baseline": {
+      "max": 23.735208,
+      "p50": 17.034583,
+      "p95": 18.099125,
+      "p99": 18.674208
+    },
+    "synthetic-provider": {
+      "max": 14.911208,
+      "p50": 12.013041,
+      "p95": 12.576333,
+      "p99": 14.110833
+    }
+  }
+}

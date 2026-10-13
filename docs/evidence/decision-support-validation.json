@@ -1,0 +1,48 @@
+{
+  "baseline_comparison": "same scene/candidates/constraints; synthetic provider reproduces kinematics only",
+  "benchmark": "docs/evidence/decision-support-benchmark.json",
+  "date": "2026-10-13",
+  "isolated_wheel": {
+    "build": "passed",
+    "first_baseline_request_and_consumption": "passed",
+    "installed_resources": "passed",
+    "torch_loaded": false
+  },
+  "java_contract": {
+    "assertions": 109,
+    "golden_java_emission_python_consumption": "passed",
+    "java_gate_status": "UNCALIBRATED",
+    "masked_abstention_parity": "passed",
+    "source_ref": "4590335421306da7964b5bd91dfa4da7922982ea"
+  },
+  "learned_accuracy_established": false,
+  "physical_safety_certified": false,
+  "python": {
+    "command": "OMP_NUM_THREADS=1 .venv/bin/python -m pytest -q",
+    "elapsed_s": 2.88,
+    "max_rss_bytes": 343228416,
+    "passed": 308
+  },
+  "remaining": [
+    "real causal histories and measured execution deviations",
+    "measured possession/readiness/task labels",
+    "trained task checkpoints and held-out calibration/OOD evidence",
+    "measured physical envelope/stopping/delay tolerances",
+    "killable resource-limited inference process",
+    "Java robot adapters and inventoried coprocessor clock mapping",
+    "hardware shadow/perception-load qualification"
+  ],
+  "resource_ceiling": "docs/evidence/decision-support-ceiling.json",
+  "review": "independent contract, dynamics, offline learning, tests and final audit; queue races, field bounds, causal evaluation and consumer tamper/deadline gates verified",
+  "robot_ready": false,
+  "scope": "repository software implementation; replay/shadow only; no robot integration or physical qualification",
+  "source_sha256": {
+    "frc_world_model/decision_bindings.py": "df3d1b3f43a9f67f6f466a35036fe4325e76502887441d9b768fda1b880ed6ff",
+    "frc_world_model/decision_dynamics.py": "b13d4bfd5321e4473b8aa3cd4105b1809c90d0a5d7f7ec5cdf390f86c46ecd29",
+    "frc_world_model/decision_learning.py": "add1aaebf3fb44017c036ad2cd4cd62a534fc049d963fd3ebec41d8e90e62046",
+    "frc_world_model/decision_schema.py": "d8e4133e0a9747088095101899e34f1b937b1c156ebac52d1a66022a78afcada",
+    "frc_world_model/decision_service.py": "02b7240fa903ac29a43bafba1cd5fd704d04bf408f4126a74b454095a666795e"
+  },
+  "starting_branch": "main",
+  "starting_commit": "ff5773923168acc6e39087aa583e67b619224609"
+}
