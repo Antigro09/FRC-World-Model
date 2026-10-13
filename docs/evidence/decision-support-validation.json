@@ -2,6 +2,7 @@
   "baseline_comparison": "same scene/candidates/constraints; synthetic provider reproduces kinematics only",
   "benchmark": "docs/evidence/decision-support-benchmark.json",
   "date": "2026-10-13",
+  "evidence_role": "historical initial implementation; current corrective verification is decision-support-review-fixes.json",
   "isolated_wheel": {
     "build": "passed",
     "first_baseline_request_and_consumption": "passed",
@@ -44,5 +45,6 @@
     "frc_world_model/decision_service.py": "02b7240fa903ac29a43bafba1cd5fd704d04bf408f4126a74b454095a666795e"
   },
   "starting_branch": "main",
-  "starting_commit": "ff5773923168acc6e39087aa583e67b619224609"
+  "starting_commit": "ff5773923168acc6e39087aa583e67b619224609",
+  "tested_source_commit": "0e0a3364674d3b555131a5e9da7139be22a67dab"
 }

@@ -69,8 +69,16 @@ def _rank(request, forecasts, policy, *, learned_candidates=(), fallback_reason=
                 reasons.append("measured-possession-prerequisite")
         for track_id in task["target_track_ids"]:
             track = tracks[track_id]
-            if now_us - track["last_measurement_us"] > policy.max_track_age_us or track["lifecycle"] != "CONFIRMED":
+            # WorldEngine marks established tracks COASTING for any positive
+            # capture-to-snapshot delay, including ordinary camera latency.
+            # Match TargetSelector's non-tentative freshness gate; propagation
+            # never refreshes the actual measurement timestamp.
+            age_us = now_us - track["last_measurement_us"]
+            if (track["estimate_us"] > now_us or not 0 <= age_us <= policy.max_track_age_us
+                    or track["lifecycle"] == "TENTATIVE"):
                 reasons.append("target-stale-or-unconfirmed")
+            if track["confidence"] < policy.minimum_target_confidence:
+                reasons.append("target-confidence-below-policy")
             cov = track["uncertainty"]
             spread = math.hypot(cov["xx_m2"] - cov["yy_m2"], 2 * cov["xy_m2"])
             if (cov["xx_m2"] + cov["yy_m2"] + spread) / 2 > policy.wire_policy.max_variance_m2:

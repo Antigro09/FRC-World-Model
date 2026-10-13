@@ -16,5 +16,6 @@
   "obstacle_error_growth_mps": 0.2, "nominal_speed_mps": 1.0,
   "travel_cost_per_m": 0.5, "time_cost_per_s": 0.2,
   "risk_cost": 1.0, "uncertainty_cost_per_m": 0.5,
-  "switching_cost": 1.0, "progress_reward_per_m": 1.0
+  "switching_cost": 1.0, "progress_reward_per_m": 1.0,
+  "minimum_target_confidence": 0.5
 }

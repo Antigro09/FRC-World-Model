@@ -1,5 +1,5 @@
 from copy import deepcopy
-from dataclasses import asdict
+from dataclasses import asdict, replace
 import json
 from itertools import repeat
 import subprocess
@@ -13,6 +13,18 @@ from frc_world_model.decision_learning import (
     fit_outcome_baseline, freeze_outcome_test_policy, load_decision_jsonl,
     split_decision_sessions,
 )
+from frc_world_model.decision_predictors import PredictorSpec, empirical_predictor_spec
+
+
+PREDICTOR_CALLS = []
+
+
+def declared_outcome_predictor(inputs, config, artifacts):
+    PREDICTOR_CALLS.append(inputs.record_id)
+    utility = config["utility"]
+    if "weights" in artifacts["checkpoint"]:
+        utility += float(artifacts["checkpoint"]["weights"].decode("ascii"))
+    return OutcomePrediction(utility, 1., 0., "declared_fixture")
 
 
 def outcome_fixture(index=0, *, session=None, day=None, speed=1., utility=4., success=True,
@@ -44,6 +56,54 @@ def outcome_fixture(index=0, *, session=None, day=None, speed=1., utility=4., su
 
 def record(index=0, **kwargs):
     return DecisionRecord.from_dict(outcome_fixture(index, **kwargs))
+
+
+@pytest.mark.parametrize("malform", [
+    lambda row: replace(row, executed_commands=()),
+    lambda row: replace(row, executed_commands=row.executed_commands[:1]),
+    lambda row: replace(row, executed_commands=row.executed_commands + row.executed_commands[:1]),
+    lambda row: replace(row, inputs=replace(row.inputs, commands=())),
+    lambda row: replace(row, inputs=replace(row.inputs, commands=row.inputs.commands[:1])),
+    lambda row: replace(row, executed_commands=(row.executed_commands[0], replace(row.executed_commands[1], offset_us=0))),
+    lambda row: replace(row, executed_commands=tuple(reversed(row.executed_commands))),
+    lambda row: replace(row, executed_commands=(replace(row.executed_commands[0], accepted_us=None), row.executed_commands[1])),
+    lambda row: replace(row, executed_commands=(replace(row.executed_commands[0], accepted_us=row.inputs.cutoff_us + 1), row.executed_commands[1])),
+    lambda row: replace(row, inputs=replace(row.inputs, step_us=0)),
+    lambda row: replace(row, inputs=replace(row.inputs, step_us=True)),
+    lambda row: replace(row, inputs=replace(row.inputs, horizon_us=200_001)),
+    lambda row: replace(row, inputs=replace(row.inputs, commands=(replace(row.inputs.commands[0], body_twist=(float("nan"), 0., 0.)), row.inputs.commands[1]))),
+    lambda row: replace(row, executed_commands=(replace(row.executed_commands[0], body_twist=(1., 0.)), row.executed_commands[1])),
+    lambda row: replace(row, executed_commands=(replace(row.executed_commands[0], applied_body_twist=(float("inf"), 0., 0.)), row.executed_commands[1])),
+    lambda row: replace(row, inputs=replace(row.inputs, commands=(replace(row.inputs.commands[0], accepted_us=0), row.inputs.commands[1]))),
+    lambda row: replace(row, inputs=replace(row.inputs, commands=(replace(row.inputs.commands[0], applied_body_twist=(0., 0., 0.)), row.inputs.commands[1]))),
+    lambda row: replace(row, executed_commands=(replace(row.executed_commands[0], mechanisms=(("intake", "ACQUIRE"), ("intake", "STOP"))), row.executed_commands[1])),
+    lambda row: replace(row, executed_commands=(replace(row.executed_commands[0], mechanisms=(("intake", float("nan")),)), row.executed_commands[1])),
+    lambda row: replace(row, inputs=replace(row.inputs, observed_us=row.inputs.cutoff_us + 1)),
+    lambda row: replace(row, inputs=replace(row.inputs, mechanism_ready=1)),
+    lambda row: replace(row, inputs=replace(row.inputs, task_kind="INVALID")),
+    lambda row: replace(row, inputs=replace(row.inputs, ego_state=(float("nan"),) + row.inputs.ego_state[1:])),
+    lambda row: replace(row, inputs=replace(row.inputs, identity=row.inputs.identity + row.inputs.identity[:1])),
+    lambda row: replace(row, outcome=replace(row.outcome, identity=())),
+    lambda row: replace(row, inputs=replace(row.inputs, target_ids=("duplicate", "duplicate"))),
+    lambda row: replace(row, outcome=replace(row.outcome, success=None)),
+    lambda row: replace(row, outcome=replace(row.outcome, utility=float("inf"))),
+    lambda row: replace(row, outcome=replace(row.outcome, observed_us=row.inputs.cutoff_us)),
+])
+def test_direct_records_fit_and_evaluation_enforce_json_equivalent_validation(malform):
+    trained = fit_outcome_baseline([record(0), record(1)], split="train")
+    invalid = malform(record(4))
+    with pytest.raises(ValueError):
+        fit_outcome_baseline([invalid], split="train")
+    calls = []
+    with pytest.raises(ValueError):
+        evaluate_outcomes([invalid], {"spy": lambda inputs: calls.append(inputs)}, split="validation", trained=trained)
+    assert calls == []
+
+
+def test_direct_prediction_cannot_bypass_complete_candidate_grid():
+    trained = fit_outcome_baseline([record(0), record(1)], split="train")
+    with pytest.raises(ValueError, match="command grid"):
+        trained.predict(replace(record(4).inputs, commands=()))
 
 
 def test_causal_inputs_do_not_expose_future_commands_or_labels():
@@ -245,7 +305,7 @@ def test_train_session_day_and_label_definition_leakage_rejected():
 
 def test_final_test_requires_frozen_model_bound_policy_and_reports_failed_limits():
     trained = fit_outcome_baseline([record(0), record(1)], split="train")
-    predictors = {"table": trained.predict}
+    predictors = {"table": empirical_predictor_spec(trained)}
     with pytest.raises(ValueError, match="frozen calibration"):
         evaluate_outcomes([record(6)], predictors, split="test", trained=trained)
     calibration = evaluate_outcomes([record(4), record(5)], predictors, split="calibration", trained=trained)
@@ -266,6 +326,81 @@ def test_final_test_requires_frozen_model_bound_policy_and_reports_failed_limits
     calibration["records"] = 20
     with pytest.raises(ValueError, match="hashed calibration"):
         freeze_outcome_test_policy(calibration, model_id=trained.model_id, limits=limits)
+
+
+def test_same_display_name_cannot_replace_frozen_predictor_implementation_before_test_input():
+    trained = fit_outcome_baseline([record(0), record(1)], split="train")
+    original = {"table": empirical_predictor_spec(trained)}
+    calibration = evaluate_outcomes([record(4)], original, split="calibration", trained=trained)
+    policy = freeze_outcome_test_policy(calibration, model_id=trained.model_id,
+        limits={"utility_mae": 1e6, "success_brier": 1., "risk_brier": 1., "minimum_coverage": 0.})
+    replacement = PredictorSpec.function(declared_outcome_predictor, config={"utility": 4.})
+    PREDICTOR_CALLS.clear()
+    def forbidden_records():
+        raise AssertionError("mismatched identity must not consume final-test records")
+        yield record(6)
+    for callback in (replacement, trained.predict):
+        with pytest.raises(ValueError, match="identity differs"):
+            evaluate_outcomes(forbidden_records(), {"table": callback}, split="test", trained=trained,
+                              frozen_test_policy=policy)
+    assert not PREDICTOR_CALLS
+
+
+@pytest.mark.parametrize("change", ["config", "checkpoint", "checkpoint_file", "model_cells"])
+def test_frozen_final_test_rejects_changed_predictor_state_before_scoring(change, tmp_path):
+    trained = fit_outcome_baseline([record(0), record(1)], split="train")
+    checkpoint = tmp_path / "weights.txt"
+    checkpoint.write_text("0")
+    spec = (empirical_predictor_spec(trained) if change == "model_cells" else
+            PredictorSpec.function(declared_outcome_predictor, config={"utility": 4.}, checkpoint_files={"weights": checkpoint}))
+    calibration = evaluate_outcomes([record(4)], {"table": spec}, split="calibration", trained=trained)
+    policy = freeze_outcome_test_policy(calibration, model_id=trained.model_id,
+        limits={"utility_mae": 1e6, "success_brier": 1., "risk_brier": 1., "minimum_coverage": 0.})
+    if change == "config":
+        changed = PredictorSpec.function(declared_outcome_predictor, config={"utility": 9.}, checkpoint_files={"weights": checkpoint})
+    elif change == "checkpoint":
+        checkpoint.write_text("1")
+        changed = PredictorSpec.function(declared_outcome_predictor, config={"utility": 4.}, checkpoint_files={"weights": checkpoint})
+    elif change == "checkpoint_file":
+        checkpoint.write_text("1")
+        changed = spec
+    else:
+        key, prediction = trained.cells[0]
+        changed = empirical_predictor_spec(replace(trained, cells=((key, replace(prediction, utility=9.)),)))
+    PREDICTOR_CALLS.clear()
+    with pytest.raises(ValueError, match="identity"):
+        evaluate_outcomes([record(6)], {"table": changed}, split="test", trained=trained, frozen_test_policy=policy)
+    assert not PREDICTOR_CALLS
+
+
+def test_bare_calibration_callbacks_are_diagnostics_and_cannot_freeze_final_test():
+    trained = fit_outcome_baseline([record(0), record(1)], split="train")
+    report = evaluate_outcomes([record(4)], {"table": trained.predict}, split="calibration", trained=trained)
+    assert report["predictor_identities"] == {"table": None}
+    with pytest.raises(ValueError, match="verified predictor"):
+        freeze_outcome_test_policy(report, model_id=trained.model_id,
+            limits={"utility_mae": 1., "success_brier": 1., "risk_brier": 1., "minimum_coverage": .5})
+
+
+def test_final_test_snapshots_predictor_map_and_limits_before_consuming_records():
+    trained = fit_outcome_baseline([record(0), record(1)], split="train")
+    predictors = {"table": empirical_predictor_spec(trained)}
+    calibration = evaluate_outcomes([record(4)], predictors, split="calibration", trained=trained)
+    policy = freeze_outcome_test_policy(calibration, model_id=trained.model_id,
+        limits={"utility_mae": .1, "success_brier": .1, "risk_brier": .1, "minimum_coverage": 1.})
+    replaced_calls = []
+    def replaced(inputs):
+        replaced_calls.append(inputs.record_id)
+        return OutcomePrediction(0., 0., 1., "swapped_unbound")
+    def records_that_change_caller_maps():
+        predictors["table"] = replaced
+        policy["limits"].update(utility_mae=1e6, success_brier=1., risk_brier=1., minimum_coverage=0.)
+        yield record(6, utility=0., success=False)
+    result = evaluate_outcomes(records_that_change_caller_maps(), predictors, split="test", trained=trained,
+                               frozen_test_policy=policy)
+    assert replaced_calls == []
+    assert result["predictors"]["table"]["predictions"]["record-6"]["provenance"] == "offline_empirical_table"
+    assert not result["predictors"]["table"]["frozen_limits_passed"]
 
 
 def test_small_dataset_reports_empty_held_out_splits_without_invented_scores():

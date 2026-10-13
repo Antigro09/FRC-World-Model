@@ -1,0 +1,674 @@
+{
+  "decision_max_track_age_us": 250000,
+  "engine_expiry_us": 700000,
+  "fixture_version": "world-engine-lifecycle/1",
+  "harness_sha256": "8f7c021e241b29b0fe592b4d93a3b16ce5162f5a0fb3954b12693e8e41cd5df6",
+  "scenarios": [
+    {
+      "capture_us": 970000,
+      "first_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "last_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "name": "confirmed_at_capture",
+      "receive_us": 970000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": true,
+          "time_us": 970000,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 1,
+        "tracks": [
+          {
+            "confidence": 0.9,
+            "epoch": 0,
+            "estimate_kind": "MEASURED",
+            "estimate_us": 970000,
+            "id": 1,
+            "last_measurement_us": 970000,
+            "lifecycle": "CONFIRMED",
+            "object_class": "piece",
+            "position_m": {
+              "x": 3.0,
+              "y": 2.0
+            },
+            "provenance": [
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 900000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 900000,
+                "sequence": 1,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              },
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 970000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 970000,
+                "sequence": 2,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              }
+            ],
+            "uncertainty": {
+              "xx_m2": 0.031599946667377775,
+              "xy_m2": 0.0,
+              "yy_m2": 0.031599946667377775
+            },
+            "velocity_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "capture_us": 970000,
+      "first_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "last_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "name": "delayed_camera_frame",
+      "receive_us": 995000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": true,
+          "time_us": 1000000,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 1,
+        "tracks": [
+          {
+            "confidence": 0.9,
+            "epoch": 0,
+            "estimate_kind": "PROPAGATED",
+            "estimate_us": 1000000,
+            "id": 1,
+            "last_measurement_us": 970000,
+            "lifecycle": "COASTING",
+            "object_class": "piece",
+            "position_m": {
+              "x": 3.0,
+              "y": 2.0
+            },
+            "provenance": [
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 900000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 900000,
+                "sequence": 1,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              },
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 970000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 995000,
+                "sequence": 2,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              }
+            ],
+            "uncertainty": {
+              "xx_m2": 0.031899946667377777,
+              "xy_m2": 0.0,
+              "yy_m2": 0.031899946667377777
+            },
+            "velocity_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "capture_us": 970000,
+      "first_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "last_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "name": "fresh_coasting_after_dropout",
+      "receive_us": 995000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": true,
+          "time_us": 1200000,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 1,
+        "tracks": [
+          {
+            "confidence": 0.9,
+            "epoch": 0,
+            "estimate_kind": "PROPAGATED",
+            "estimate_us": 1200000,
+            "id": 1,
+            "last_measurement_us": 970000,
+            "lifecycle": "COASTING",
+            "object_class": "piece",
+            "position_m": {
+              "x": 3.0,
+              "y": 2.0
+            },
+            "provenance": [
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 900000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 900000,
+                "sequence": 1,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              },
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 970000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 995000,
+                "sequence": 2,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              }
+            ],
+            "uncertainty": {
+              "xx_m2": 0.03389994666737778,
+              "xy_m2": 0.0,
+              "yy_m2": 0.03389994666737778
+            },
+            "velocity_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "capture_us": 970000,
+      "first_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "last_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "name": "decision_age_boundary",
+      "receive_us": 995000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": true,
+          "time_us": 1210000,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 1,
+        "tracks": [
+          {
+            "confidence": 0.9,
+            "epoch": 0,
+            "estimate_kind": "PROPAGATED",
+            "estimate_us": 1210000,
+            "id": 1,
+            "last_measurement_us": 970000,
+            "lifecycle": "COASTING",
+            "object_class": "piece",
+            "position_m": {
+              "x": 3.0,
+              "y": 2.0
+            },
+            "provenance": [
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 900000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 900000,
+                "sequence": 1,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              },
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 970000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 995000,
+                "sequence": 2,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              }
+            ],
+            "uncertainty": {
+              "xx_m2": 0.033999946667377774,
+              "xy_m2": 0.0,
+              "yy_m2": 0.033999946667377774
+            },
+            "velocity_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "capture_us": 970000,
+      "first_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "last_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "name": "decision_age_expired",
+      "receive_us": 995000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": true,
+          "time_us": 1210001,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 1,
+        "tracks": [
+          {
+            "confidence": 0.9,
+            "epoch": 0,
+            "estimate_kind": "PROPAGATED",
+            "estimate_us": 1210001,
+            "id": 1,
+            "last_measurement_us": 970000,
+            "lifecycle": "COASTING",
+            "object_class": "piece",
+            "position_m": {
+              "x": 3.0,
+              "y": 2.0
+            },
+            "provenance": [
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 900000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 900000,
+                "sequence": 1,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              },
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 970000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 995000,
+                "sequence": 2,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              }
+            ],
+            "uncertainty": {
+              "xx_m2": 0.033999956667377776,
+              "xy_m2": 0.0,
+              "yy_m2": 0.033999956667377776
+            },
+            "velocity_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "capture_us": 970000,
+      "first_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "last_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "name": "engine_expired",
+      "receive_us": 995000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": true,
+          "time_us": 1670001,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 2,
+        "tracks": []
+      }
+    },
+    {
+      "capture_us": 970000,
+      "first_frame": null,
+      "last_frame": {
+        "accepted_measurements": 1,
+        "status": "ACCEPTED"
+      },
+      "name": "tentative_delayed",
+      "receive_us": 995000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": true,
+          "time_us": 1000000,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 1,
+        "tracks": [
+          {
+            "confidence": 0.9,
+            "epoch": 0,
+            "estimate_kind": "PROPAGATED",
+            "estimate_us": 1000000,
+            "id": 1,
+            "last_measurement_us": 970000,
+            "lifecycle": "TENTATIVE",
+            "object_class": "piece",
+            "position_m": {
+              "x": 3.0,
+              "y": 2.0
+            },
+            "provenance": [
+              {
+                "boot_id": "camera-boot-1",
+                "calibration_revision": "calibration-v1",
+                "capture_us": 970000,
+                "correlation_group": "same-capture",
+                "mount_revision": "mount-v1",
+                "publication_us": 995000,
+                "sequence": 2,
+                "source_id": "camera-front",
+                "target_height_m": 0.0
+              }
+            ],
+            "uncertainty": {
+              "xx_m2": 0.031899946667377777,
+              "xy_m2": 0.0,
+              "yy_m2": 0.031899946667377777
+            },
+            "velocity_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "capture_us": 970000,
+      "first_frame": {
+        "accepted_measurements": 0,
+        "status": "INVALID_LOCALIZATION"
+      },
+      "last_frame": {
+        "accepted_measurements": 0,
+        "status": "INVALID_LOCALIZATION"
+      },
+      "name": "invalid_localization",
+      "receive_us": 995000,
+      "snapshot": {
+        "ego": {
+          "field_pose": {
+            "heading_rad": 0.0,
+            "position_m": {
+              "x": 1.0,
+              "y": 2.0
+            }
+          },
+          "field_velocity": {
+            "angular_radps": 0.0,
+            "linear_mps": {
+              "x": 0.0,
+              "y": 0.0
+            }
+          },
+          "localization_valid": false,
+          "time_us": 1000000,
+          "uncertainty": {
+            "xx_m2": 0.01,
+            "xy_m2": 0.0,
+            "yy_m2": 0.01
+          }
+        },
+        "epoch": 0,
+        "field": {
+          "geometry_revision": "geometry-v1",
+          "map_id": "synthetic-field-v1",
+          "season": "OFFSEASON_2026"
+        },
+        "id": 1,
+        "obstacle_map_version": 0,
+        "tracks": []
+      }
+    }
+  ],
+  "semantics": {
+    "lifecycle": "WorldEngine.publish: established tracks are COASTING whenever snapshot time exceeds last capture time",
+    "policy_limits": "Only synthetic configuration; engine expiry and decision freshness are separate limits",
+    "target_selection": "TargetSelector.eligible: non-TENTATIVE, measurement age <= configured maximum, and bounded variance"
+  },
+  "source_commit": "4590335421306da7964b5bd91dfa4da7922982ea",
+  "source_repository": "FRC-World-State",
+  "source_sha256": {
+    "src/main/java/org/frcworldstate/core/Geometry.java": "4dc7c42e1c196681fcd8c176dc9cc9aa132def99da805d7838b26344375c8b28",
+    "src/main/java/org/frcworldstate/core/PoseHistory.java": "505986935dd60f866432fa216ea14997a326d44b5e361f3d857e0dc606f30a6a",
+    "src/main/java/org/frcworldstate/core/SafetySupervisor.java": "41c17f5a4689f73347fb6ea8eb37ab31bfc7ba341a75bfa37d0d9432d0f2e1a1",
+    "src/main/java/org/frcworldstate/core/TargetSelector.java": "d1598ae3cd4d9863fdf6711d482bad29c7688c5655773256084d20b511cecb68",
+    "src/main/java/org/frcworldstate/core/World.java": "7157b4ded74429d8e372b35f3e0aa13f49187e1b75019f000555ec2117378bf3",
+    "src/main/java/org/frcworldstate/core/WorldEngine.java": "5308553e60f4ddb1d45aebd231376ec4f8f8656bb674b630c8895783a7779059"
+  },
+  "synthetic_inputs": true
+}

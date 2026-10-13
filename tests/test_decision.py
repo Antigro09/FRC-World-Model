@@ -168,7 +168,7 @@ def test_changed_obstacle_and_delayed_target_recompute_feasibility():
 
 
 @pytest.mark.parametrize("change", [
-    lambda track: track.update(lifecycle="COASTING"),
+    lambda track: track.update(lifecycle="TENTATIVE"),
     lambda track: track["uncertainty"].update(xx_m2=1.1, yy_m2=1.1),
 ])
 def test_authoritative_target_uncertainty_or_lifecycle_abstains_pickup(change):

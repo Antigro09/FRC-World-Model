@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-13",
+  "documentation": [
+    "docs/DECISION_LEARNING.md horizon/censoring and identity limits",
+    "docs/DECISION_SUPPORT.md future adapter gaps"
+  ],
+  "fixes": {
+    "frozen_predictors": "source/runtime/config/checkpoint/data content identities verified before test records and scoring; caller callback/policy maps snapshotted; artifact replacement and mutable-map races rejected",
+    "lifecycle": "fresh established CONFIRMED/COASTING admitted with unchanged capture-age, variance and explicit confidence gates; TENTATIVE/expired remain unavailable",
+    "typed_records": "complete bounded ordered finite candidate/executed grids, causal acceptance, retained outcome identity and all representable fields checked before fit/evaluation"
+  },
+  "independent_review": {
+    "additional_fixes": [
+      "artifact snapshot replacement",
+      "caller mutable callback/limits race"
+    ],
+    "outcome": "no remaining material findings in requested scope"
+  },
+  "isolated_wheel": {
+    "build": "passed",
+    "first_baseline_request_and_consumption": "passed",
+    "installed_contract_hashes": 6,
+    "predictor_identity_module": "available",
+    "torch_loaded": false
+  },
+  "learned_readiness": false,
+  "original_reproductions": {
+    "empty_executed_commands": "accepted as one fitted empirical bin",
+    "fresh_coasting": "four original false rejections using WorldEngine output",
+    "same_name_callback_replacement": "accepted and scored under old frozen name"
+  },
+  "physical_safety_certified": false,
+  "python": {
+    "command": "OMP_NUM_THREADS=1 .venv/bin/python -m pytest -q",
+    "elapsed_s": 3.41,
+    "max_rss_bytes": 345849856,
+    "passed": 376
+  },
+  "remaining": [
+    "real label adapter with event times, coverage and censoring",
+    "real data/checkpoints and held-out calibration",
+    "current-context asynchronous robot admission and common accepted-action prefix",
+    "multi-piece inventory and per-fact freshness",
+    "killable resource-limited inference worker",
+    "Java robot integration and hardware qualification"
+  ],
+  "robot_ready": false,
+  "scope": "planner-review corrective changes only; replay/shadow; robot integration remains planning-only",
+  "source_sha256": {
+    "frc_world_model/decision_bindings.py": "315ccb3e66914736c7d5d507d2ff65dac5c163149bfb18be79ff333b965ddf21",
+    "frc_world_model/decision_dynamics.py": "b13d4bfd5321e4473b8aa3cd4105b1809c90d0a5d7f7ec5cdf390f86c46ecd29",
+    "frc_world_model/decision_learning.py": "d18d7d192f131cc5cfefb35f8ac2b0fcc8dcb83626f0beb9d7cf7f289665e01d",
+    "frc_world_model/decision_predictors.py": "fda98d2e1be2b8b7adbda12655eee199431ab470bea98a2c70843ce8276bf178",
+    "frc_world_model/decision_schema.py": "d8e4133e0a9747088095101899e34f1b937b1c156ebac52d1a66022a78afcada",
+    "frc_world_model/decision_service.py": "9bcd3da9c0b836367da8af73e3a29e450b52f9bab337af1f2d17d04ba5967ff1"
+  },
+  "starting_branch": "main",
+  "starting_commit": "0e0a3364674d3b555131a5e9da7139be22a67dab",
+  "targeted_tests": {
+    "elapsed_s": 0.38,
+    "modules": [
+      "tests/test_decision_learning.py",
+      "tests/test_decision_predictors.py",
+      "tests/test_world_engine_lifecycle.py"
+    ],
+    "passed": 106
+  },
+  "world_engine": {
+    "harness_sha256": "8f7c021e241b29b0fe592b4d93a3b16ce5162f5a0fb3954b12693e8e41cd5df6",
+    "regeneration_byte_parity": "passed",
+    "scenarios": 8,
+    "source_commit": "4590335421306da7964b5bd91dfa4da7922982ea",
+    "source_sha256": {
+      "src/main/java/org/frcworldstate/core/Geometry.java": "4dc7c42e1c196681fcd8c176dc9cc9aa132def99da805d7838b26344375c8b28",
+      "src/main/java/org/frcworldstate/core/PoseHistory.java": "505986935dd60f866432fa216ea14997a326d44b5e361f3d857e0dc606f30a6a",
+      "src/main/java/org/frcworldstate/core/SafetySupervisor.java": "41c17f5a4689f73347fb6ea8eb37ab31bfc7ba341a75bfa37d0d9432d0f2e1a1",
+      "src/main/java/org/frcworldstate/core/TargetSelector.java": "d1598ae3cd4d9863fdf6711d482bad29c7688c5655773256084d20b511cecb68",
+      "src/main/java/org/frcworldstate/core/World.java": "7157b4ded74429d8e372b35f3e0aa13f49187e1b75019f000555ec2117378bf3",
+      "src/main/java/org/frcworldstate/core/WorldEngine.java": "5308553e60f4ddb1d45aebd231376ec4f8f8656bb674b630c8895783a7779059"
+    }
+  }
+}

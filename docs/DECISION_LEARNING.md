@@ -105,10 +105,48 @@ a line-specific error. The parser reads at most the byte limit plus one before
 decoding JSON, so growing input files cannot bypass the byte limit. The record
 and command bounds also apply to Python APIs, including duplicate-only streams.
 
+## Success horizon and censoring before real datasets
+
+The label question must be frozen per task: for example, "measured possession
+transition and verified pickup completion by cutoff + horizon", rather than
+"eventually picked up". The interval starts at the decision cutoff and ends at
+`cutoff_us + horizon_us`; it does not restart when a reply or label arrives.
+Completion after that endpoint is not success for that horizon. A 160–200 ms ego
+forecast cannot establish multi-second pickup success or strategic task value.
+Success, risk and utility must use predeclared, compatible horizon/label definitions.
+
+`outcome.observed_us` is the time the horizon label became available, at or after
+the endpoint. It is not a completion-event timestamp and does not prove continuous
+observation. A false success label is valid only when the whole intended interval
+was observed under its declared completion criterion. Lost sensing, missing end
+labels, identity reset, task cancellation/replacement, aborted execution or logs
+ending before the endpoint create censored/unusable examples; they must be
+excluded and counted by the label adapter, never assigned false success or zero
+risk. Accepted-command deviation remains separately excluded by this evaluator.
+
+The current v1 envelope stores booleans, label-source and utility/risk definition
+IDs, but no completion-event time, independent success-definition ID, coverage
+interval, terminal/cancellation cause or explicit censoring flag. Its parser
+checks availability time/types; it cannot verify those omitted label semantics.
+Before using real task datasets, define and version an audited label adapter or
+richer outcome schema that records event times, coverage and censoring, reports
+exclusion denominators, and binds the same criteria across train/calibration/test.
+No real task-success readiness or censoring qualification is established here.
+
+Direct `DecisionRecord`/`CausalTaskInput` callers now receive the same representable
+length/grid/value/causal-time checks as JSON callers before fitting, hashing,
+splitting or scoring. Candidate and executed grids must be complete, ordered,
+finite and bounded; outcome identity is retained and checked. JSON additionally
+validates original synchronization and candidate-creation metadata. Those fields
+are not retained in the typed input, so typed declarations cannot independently
+re-prove their original provenance. Real records still need the audited causal
+ingestion and label adapters.
+
 ## Training and evaluation
 
 ```python
 from frc_world_model.data import SplitConfig
+from frc_world_model.decision_predictors import empirical_predictor_spec
 from frc_world_model.decision_learning import (
     load_decision_jsonl, split_decision_sessions,
     fit_outcome_baseline, evaluate_outcomes, OutcomePrediction,
@@ -126,7 +164,7 @@ def example_reference(inputs):
 
 validation = evaluate_outcomes(
     splits.records["validation"],
-    {"empirical_table": model.predict, "example_reference": example_reference},
+    {"empirical_table": empirical_predictor_spec(model), "example_reference": example_reference},
     split="validation", trained=model,
 )
 ```
@@ -181,6 +219,13 @@ from a hashed held-out calibration report:
 ```python
 from frc_world_model.decision_learning import freeze_outcome_test_policy
 
+# Bare callbacks above are validation diagnostics. Freeze only verified specs.
+frozen_predictors = {"empirical_table": empirical_predictor_spec(model)}
+calibration_report = evaluate_outcomes(
+    splits.records["calibration"], frozen_predictors,
+    split="calibration", trained=model,
+)
+
 policy = freeze_outcome_test_policy(
     calibration_report, model_id=model.model_id,
     limits={"utility_mae": approved_utility_limit,
@@ -194,10 +239,36 @@ test = evaluate_outcomes(
 )
 ```
 
-The final test cannot reuse calibration sessions or days. Policy hashes,
-predictor names and model identity must match, and actual test scores are
-compared against frozen limits. Passing such limits remains an offline outcome
-score result, with `qualified_for_live: false`.
+The final test cannot reuse calibration sessions or days. Policy hashes, names,
+model identity and verified implementation/configuration/artifact identities
+must match before test records are consumed or callbacks run. Changing a callback
+under the same display name, table cells, declared config or checkpoint requires
+new calibration. Callback maps and frozen limits are snapshotted before ingestion;
+caller mutation cannot replace the scored implementation or loosen its limits.
+Passing limits remains an offline outcome score, with `qualified_for_live: false`.
+
+`PredictorSpec.function` registers a module-level function with signature
+`(inputs, config, artifacts)`. It binds the actual entrypoint source and normalized
+runtime code, Python runtime version, canonical configuration, and explicit
+implementation/checkpoint/data SHA256/length manifests. Extra dependency source
+files must be declared. Config and artifact bytes passed to the callback are
+immutable snapshots; no unsafe checkpoint deserialization occurs. `verify()`
+recomputes the complete identity and checks current files before evaluation and
+after record ingestion. Each call also checks runtime-code identity.
+`empirical_predictor_spec(model)` freezes the table's cells, training/domain/label
+identity and support config without retaining mutable bound-model state.
+
+Bare callbacks remain usable for validation/calibration diagnostics, but produce
+null predictor identities and cannot freeze or run a final test. Closures,
+default-state functions and arbitrary bound methods cannot be registered by
+guessing their state; use an explicit function and declared immutable inputs.
+The wrapper bounds config to 1 MiB, files to 64 MiB each and 128 MiB total, with
+at most 32 declared artifacts. Source hashes identify bytes, not a secure Python
+execution environment: mutable globals, undeclared imported dependencies, native
+libraries, external I/O and nondeterminism can still affect arbitrary callbacks.
+Review and isolate real predictors and declare their complete dependencies;
+these identities are reproducibility evidence, not behavioral attestation or
+live-model qualification. Content identities survive relocating identical files.
 
 For a complete bounded preparation/fit/validation/calibration run:
 
@@ -212,6 +283,11 @@ hashes and validation/calibration scores. Final-test metrics remain uncomputed
 and final-test labels are not used for fitting or tuning.
 
 ## Bounded local software evidence
+
+The following timing table records the initial `0e0a336` implementation and is
+historical. Corrective review validation is recorded separately in
+`docs/evidence/decision-support-review-fixes.json`; the current typed validators
+and verified predictor wrappers add checks and do not inherit those timings.
 
 On 2026-10-13, `.venv/bin/python -m pytest -q
 tests/test_decision_learning.py` passed 38 checks in 0.16 seconds. These cover

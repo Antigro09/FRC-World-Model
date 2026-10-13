@@ -8,6 +8,7 @@ learned forecast, calibrated covariance, or a counterfactual policy evaluator.
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 from collections import Counter, defaultdict
 from dataclasses import asdict, dataclass
 from datetime import date
@@ -18,6 +19,7 @@ import time
 from typing import Any, Callable, Iterable, Mapping
 
 from .data import IDENTITY_KEYS, SPLIT_NAMES, SplitConfig, canonical_hash
+from .decision_predictors import PredictorSpec, empirical_predictor_spec
 
 OUTCOME_SCHEMA = "frc-decision-outcome-log/1"
 MAX_RECORDS = 2048
@@ -157,6 +159,7 @@ class TaskOutcome:
     label_source_id: str
     utility_definition_id: str
     risk_definition_id: str
+    identity: tuple[tuple[str, str], ...]
 
 
 @dataclass(frozen=True)
@@ -227,8 +230,104 @@ class DecisionRecord:
         labels = TaskOutcome(outcome_time, outcome["success"], outcome["risk_event"],
                              _number(outcome["utility"], "utility"), outcome["provenance"],
                              _id(outcome["label_source_id"]), _id(outcome["utility_definition_id"]),
-                             _id(outcome["risk_definition_id"]))
+                             _id(outcome["risk_definition_id"]), identity)
         return cls(inputs, executed, labels)
+
+
+def _typed_pairs(value, label: str, maximum: int) -> dict[str, Any]:
+    """Do not let dict conversion hide duplicate/malformed typed entries."""
+    if type(value) is not tuple or len(value) > maximum:
+        raise ValueError(label + " must be a bounded immutable tuple")
+    result = {}
+    for pair in value:
+        if type(pair) is not tuple or len(pair) != 2:
+            raise ValueError(label + " pair shape")
+        key, item = pair
+        _id(key)
+        if key in result:
+            raise ValueError(label + " duplicate key")
+        result[key] = item
+    return result
+
+
+def _validate_command_grid(commands, inputs: CausalTaskInput, *, executed: bool) -> None:
+    """Typed callers get the same grid/value checks as the JSON adapter."""
+    if type(commands) is not tuple or len(commands) != inputs.horizon_us // inputs.step_us or not 1 <= len(commands) <= MAX_SAMPLES:
+        raise ValueError("complete bounded command grid required")
+    raw = []
+    for command in commands:
+        if type(command) is not CommandSample or type(command.body_twist) is not tuple or len(command.body_twist) != 3:
+            raise ValueError("immutable CommandSample and body twist required")
+        sample = {"offset_us": command.offset_us, "body_twist": list(command.body_twist),
+                  "mechanisms": _typed_pairs(command.mechanisms, "mechanism commands", 16)}
+        if executed:
+            sample["accepted_us"] = command.accepted_us
+            if command.applied_body_twist is not None:
+                if type(command.applied_body_twist) is not tuple or len(command.applied_body_twist) != 3:
+                    raise ValueError("immutable applied twist required")
+                sample["applied_body_twist"] = list(command.applied_body_twist)
+        elif command.accepted_us is not None or command.applied_body_twist is not None:
+            raise ValueError("candidate cannot expose later accepted/applied command")
+        raw.append(sample)
+    _commands(raw, inputs.step_us, inputs.horizon_us, inputs.cutoff_us, executed=executed)
+
+
+def _validate_causal_input(inputs: CausalTaskInput) -> None:
+    if type(inputs) is not CausalTaskInput:
+        raise ValueError("validated CausalTaskInput required")
+    for name in ("record_id", "session_id", "request_id", "candidate_id", "task_id"):
+        _id(getattr(inputs, name))
+    if not isinstance(inputs.day, str) or date.fromisoformat(inputs.day).isoformat() != inputs.day:
+        raise ValueError("ISO day required")
+    identity = _identity(_typed_pairs(inputs.identity, "identity", len(IDENTITY_KEYS)))
+    if identity != inputs.identity:
+        raise ValueError("canonical complete typed identity required")
+    for name in ("snapshot_id", "cutoff_us", "observed_us", "possession_observed_us", "mechanism_observed_us"):
+        _int(getattr(inputs, name), name)
+    horizon, step = _int(inputs.horizon_us, "horizon_us", 1), _int(inputs.step_us, "step_us", 1)
+    if horizon > MAX_HORIZON_US or horizon % step:
+        raise ValueError("bounded integral horizon required")
+    if any(t > inputs.cutoff_us for t in (inputs.observed_us, inputs.possession_observed_us, inputs.mechanism_observed_us)):
+        raise ValueError("future context leakage")
+    if inputs.task_kind not in TASK_KINDS or inputs.possession not in ("EMPTY", "HELD", "UNKNOWN"):
+        raise ValueError("unsupported task or measured possession context")
+    if inputs.mechanism_ready is not None and type(inputs.mechanism_ready) is not bool:
+        raise ValueError("readiness must be bool or unknown")
+    for name, size in (("ego_state", 6), ("goal_xy_m", 2)):
+        value = getattr(inputs, name)
+        if type(value) is not tuple or len(value) != size:
+            raise ValueError(name + " must be immutable")
+        _vector(list(value), size, name)
+    if type(inputs.target_ids) is not tuple or len(inputs.target_ids) > 16:
+        raise ValueError("bounded immutable target identities required")
+    for target in inputs.target_ids:
+        _id(target)
+    if len(set(inputs.target_ids)) != len(inputs.target_ids):
+        raise ValueError("duplicate target identity")
+    for name in ("path_length_m", "minimum_clearance_m", "time_remaining_s"):
+        _number(getattr(inputs, name), name, 0)
+    _validate_command_grid(inputs.commands, inputs, executed=False)
+
+
+def _validate_record(record: DecisionRecord) -> None:
+    if type(record) is not DecisionRecord:
+        raise ValueError("validated DecisionRecord required")
+    _validate_causal_input(record.inputs)
+    _validate_command_grid(record.executed_commands, record.inputs, executed=True)
+    outcome = record.outcome
+    if type(outcome) is not TaskOutcome:
+        raise ValueError("validated TaskOutcome required")
+    if outcome.identity != record.inputs.identity:
+        raise ValueError("outcome crossed source/reset/map identity")
+    if _int(outcome.observed_us, "outcome observed_us") < record.inputs.cutoff_us + record.inputs.horizon_us:
+        raise ValueError("outcome does not cover the forecast horizon")
+    if type(outcome.success) is not bool or type(outcome.risk_event) is not bool:
+        raise ValueError("observed task labels required; unknown is not false")
+    _number(outcome.utility, "utility")
+    if outcome.provenance not in PROVENANCES:
+        raise ValueError("explicit measured/ground-truth/synthetic provenance required")
+    for name in ("label_source_id", "utility_definition_id", "risk_definition_id"):
+        _id(getattr(outcome, name))
 
 
 def _bounded(records: Iterable[DecisionRecord], maximum: int = MAX_RECORDS) -> tuple[DecisionRecord, ...]:
@@ -236,10 +335,9 @@ def _bounded(records: Iterable[DecisionRecord], maximum: int = MAX_RECORDS) -> t
         raise ValueError("record bound exceeds offline ceiling")
     result, seen, decisions = [], {}, {}
     for source_index, record in enumerate(records):
-        if not isinstance(record, DecisionRecord):
-            raise ValueError("validated DecisionRecord required")
         if source_index >= maximum:
             raise ValueError("record capacity exceeded")
+        _validate_record(record)
         digest = canonical_hash(asdict(record))
         identifier = record.inputs.record_id
         key = (record.inputs.session_id, record.inputs.identity, record.inputs.cutoff_us, record.inputs.candidate_id)
@@ -357,7 +455,8 @@ def _cell(inputs: CausalTaskInput) -> tuple[Any, ...]:
 
 def _execution_matches(row: DecisionRecord) -> bool:
     """Labels describe candidate commands only when accepted/applied grids agree."""
-    return all((a.body_twist, a.mechanisms) == (b.body_twist, b.mechanisms) and
+    return bool(row.inputs.commands) and len(row.inputs.commands) == len(row.executed_commands) and all(
+               (a.offset_us, a.body_twist, a.mechanisms) == (b.offset_us, b.body_twist, b.mechanisms) and
                (b.applied_body_twist is None or b.applied_body_twist == a.body_twist)
                for a, b in zip(row.inputs.commands, row.executed_commands))
 
@@ -375,6 +474,7 @@ class EmpiricalOutcomeBaseline:
     report: Mapping[str, Any]
 
     def predict(self, inputs: CausalTaskInput) -> OutcomePrediction | None:
+        _validate_causal_input(inputs)
         if inputs.possession == "UNKNOWN" or inputs.mechanism_ready is None:
             return None
         return dict(self.cells).get(_cell(inputs))  # Unseen bins abstain.
@@ -432,6 +532,28 @@ def evaluate_outcomes(records: Iterable[DecisionRecord], predictors: Mapping[str
     """
     if split not in ("validation", "calibration", "test") or not predictors or len(predictors) > 8:
         raise ValueError("bounded held-out evaluation required")
+    # Caller-owned maps can change while a record iterable is consumed. Bind the
+    # exact registered callbacks and policy once, then use only these snapshots.
+    predictors = dict(predictors)
+    frozen_test_policy = deepcopy(dict(frozen_test_policy)) if frozen_test_policy is not None else None
+    predictor_identities = {}
+    for name, predictor in predictors.items():
+        _id(name)
+        if not callable(predictor):
+            raise ValueError("callable outcome predictor required")
+        predictor_identities[name] = predictor.verify() if type(predictor) is PredictorSpec else None
+    if split == "test":
+        if not frozen_test_policy or frozen_test_policy.get("model_id") != trained.model_id:
+            raise ValueError("final test requires a model-bound frozen calibration policy")
+        policy = dict(frozen_test_policy)
+        policy_hash = policy.pop("policy_hash", None)
+        if canonical_hash(policy) != policy_hash or policy.get("calibration_split") != "calibration":
+            raise ValueError("invalid frozen calibration policy")
+        if sorted(predictors) != policy.get("predictor_names"):
+            raise ValueError("final-test predictors differ from frozen calibration")
+        if any(identity is None for identity in predictor_identities.values()) or predictor_identities != policy.get("predictor_identities"):
+            raise ValueError("final-test predictor implementation/config/artifact identity differs from frozen calibration")
+    # Admit identity before consuming final-test records or invoking callbacks.
     rows = _bounded(records)
     if any(r.inputs.session_id in trained.train_sessions or r.inputs.day in trained.train_days or
            r.inputs.record_id in trained.train_record_ids for r in rows):
@@ -442,18 +564,13 @@ def evaluate_outcomes(records: Iterable[DecisionRecord], predictors: Mapping[str
     eligible = tuple(row for row in rows if _execution_matches(row))
     exclusions = {"candidate_execution_deviation": len(rows) - len(eligible)} if len(eligible) != len(rows) else {}
     if split == "test":
-        if not frozen_test_policy or frozen_test_policy.get("model_id") != trained.model_id:
-            raise ValueError("final test requires a model-bound frozen calibration policy")
-        policy = dict(frozen_test_policy)
-        policy_hash = policy.pop("policy_hash", None)
-        if canonical_hash(policy) != policy_hash or policy.get("calibration_split") != "calibration":
-            raise ValueError("invalid frozen calibration policy")
-        if sorted(predictors) != policy.get("predictor_names"):
-            raise ValueError("final-test predictors differ from frozen calibration")
         if any(r.inputs.session_id in policy["calibration_sessions"] or r.inputs.day in policy["calibration_days"] for r in rows):
             raise ValueError("calibration session/day leaked into final test")
+    for predictor in predictors.values():
+        if type(predictor) is PredictorSpec:
+            predictor.verify()  # No artifact drift during record ingestion.
     report = {"split": split, "records": len(rows), "eligible_records": len(eligible), "exclusions": exclusions,
-              "model_id": trained.model_id,
+              "model_id": trained.model_id, "predictor_identities": predictor_identities,
               "record_hash": canonical_hash([asdict(r) for r in rows]), "predictors": {},
               "sessions": sorted({r.inputs.session_id for r in rows}), "days": sorted({r.inputs.day for r in rows}),
               "label_provenance": dict(Counter(r.outcome.provenance for r in rows)),
@@ -512,12 +629,16 @@ def freeze_outcome_test_policy(calibration_report: Mapping[str, Any], *, model_i
         raise ValueError("complete hashed calibration evidence required")
     if not report.get("predictors") or any(not value["metrics"].get("all") for value in report["predictors"].values()):
         raise ValueError("calibration predictions required")
+    identities = report.get("predictor_identities")
+    if not isinstance(identities, dict) or set(identities) != set(report["predictors"]) or any(identity is None for identity in identities.values()):
+        raise ValueError("frozen calibration requires verified predictor implementation/config/artifact identities")
     if set(limits) != required:
         raise ValueError("all explicit score and coverage limits required")
     parsed = {key: _number(value, key, 0, 1 if key != "utility_mae" else 1e6) for key, value in limits.items()}
     policy = {"model_id": model_id, "calibration_split": "calibration", "calibration_hash": digest,
               "calibration_sessions": report["sessions"], "calibration_days": report["days"], "limits": parsed,
               "predictor_names": sorted(report["predictors"]),
+              "predictor_identities": identities,
               "qualified_for_live": False, "claims": "offline score limits only; no physical safety qualification"}
     policy["policy_hash"] = canonical_hash(policy)
     return policy
@@ -533,7 +654,7 @@ def main() -> None:
     splits = split_decision_sessions(records, SplitConfig(seed=args.seed))
     model = fit_outcome_baseline(splits.records["train"], split="train")
     result = {"ingestion": ingestion, "split": splits.manifest(), "model": asdict(model),
-              "evaluation": {name: evaluate_outcomes(splits.records[name], {"empirical_table": model.predict},
+              "evaluation": {name: evaluate_outcomes(splits.records[name], {"empirical_table": empirical_predictor_spec(model)},
                              split=name, trained=model) for name in ("validation", "calibration")},
               "final_test": "uninspected", "qualified_for_live": False}
     with args.output.open("x") as output:
@@ -543,4 +664,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    # Keep model/function identities in the canonical module even for -m runs.
+    # Defining the fitted class only as __main__ would create a second, distinct
+    # class when the identity adapter imports the implementation for verification.
+    from .decision_learning import main as canonical_main
+    canonical_main()

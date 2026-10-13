@@ -67,6 +67,7 @@ class DecisionPolicy:
     uncertainty_cost_per_m: float
     switching_cost: float
     progress_reward_per_m: float
+    minimum_target_confidence: float
     max_context_age_us: int = 250_000
     max_track_age_us: int = 250_000
     max_request_ttl_us: int = 500_000
@@ -99,6 +100,8 @@ class DecisionPolicy:
             raise ContractError("missing decision policy identity")
         if self.nominal_speed_mps > self.wire_policy.max_speed_mps:
             raise ContractError("nominal speed exceeds configured domain")
+        if type(self.minimum_target_confidence) not in (int, float) or not math.isfinite(self.minimum_target_confidence) or not 0 <= self.minimum_target_confidence <= 1:
+            raise ContractError("explicit target confidence bound required")
 
 
 def load_policy(path):

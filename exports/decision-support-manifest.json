@@ -2,8 +2,10 @@
   "actuator_owner": "roboRIO",
   "component": "FRC-World-Model adaptive advisory decisions",
   "contract": "contracts/decision-support-v1/manifest.json",
+  "historical_validation": "docs/evidence/decision-support-validation.json",
   "influences_commands": false,
   "learned_task_readiness": "unavailable; current frozen wire replies remain masked abstention",
+  "lifecycle_fixture": "contracts/decision-support-v1/world-engine-lifecycle-fixtures.json",
   "measured_state_owner": "FRC-World-State",
   "mode": [
     "replay",
@@ -21,14 +23,16 @@
     "request_reply_max_bytes": 1000000
   },
   "source_sha256": {
-    "frc_world_model/decision_bindings.py": "df3d1b3f43a9f67f6f466a35036fe4325e76502887441d9b768fda1b880ed6ff",
+    "frc_world_model/decision_bindings.py": "315ccb3e66914736c7d5d507d2ff65dac5c163149bfb18be79ff333b965ddf21",
     "frc_world_model/decision_dynamics.py": "b13d4bfd5321e4473b8aa3cd4105b1809c90d0a5d7f7ec5cdf390f86c46ecd29",
-    "frc_world_model/decision_learning.py": "add1aaebf3fb44017c036ad2cd4cd62a534fc049d963fd3ebec41d8e90e62046",
+    "frc_world_model/decision_learning.py": "d18d7d192f131cc5cfefb35f8ac2b0fcc8dcb83626f0beb9d7cf7f289665e01d",
+    "frc_world_model/decision_predictors.py": "fda98d2e1be2b8b7adbda12655eee199431ab470bea98a2c70843ce8276bf178",
     "frc_world_model/decision_schema.py": "d8e4133e0a9747088095101899e34f1b937b1c156ebac52d1a66022a78afcada",
-    "frc_world_model/decision_service.py": "02b7240fa903ac29a43bafba1cd5fd704d04bf408f4126a74b454095a666795e"
+    "frc_world_model/decision_service.py": "9bcd3da9c0b836367da8af73e3a29e450b52f9bab337af1f2d17d04ba5967ff1"
   },
-  "starting_commit": "ff5773923168acc6e39087aa583e67b619224609",
+  "starting_commit": "0e0a3364674d3b555131a5e9da7139be22a67dab",
+  "target_quality_policy": "explicit minimum_target_confidence plus original-measurement freshness/variance",
   "upstream_contract": "contracts/world-state-v1/manifest.json",
-  "validation": "docs/evidence/decision-support-validation.json",
+  "validation": "docs/evidence/decision-support-review-fixes.json",
   "version": "frc-decision-support/1"
 }

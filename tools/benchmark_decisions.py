@@ -43,7 +43,7 @@ def fixture_policy(**changes):
         ego_error_growth_mps=.01, obstacle_error_growth_mps=.01,
         nominal_speed_mps=1., travel_cost_per_m=.1, time_cost_per_s=.1,
         risk_cost=1., uncertainty_cost_per_m=.1, switching_cost=.5,
-        progress_reward_per_m=2., approved_domain_id="synthetic-domain-v1",
+        progress_reward_per_m=2., minimum_target_confidence=.5, approved_domain_id="synthetic-domain-v1",
     )
     return replace(policy, **changes)
 
