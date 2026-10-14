@@ -1,0 +1,5 @@
+# Optional synthetic localhost NT4 profile; Python 3.12, macOS ARM64.
+# Kept separate from model/training environments and hardware installation.
+pyntcore==2024.3.2.1
+robotpy-wpinet==2024.3.2.1
+robotpy-wpiutil==2024.3.2.1

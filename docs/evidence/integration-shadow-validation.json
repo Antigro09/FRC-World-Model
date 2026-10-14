@@ -1,0 +1,73 @@
+{
+  "schema_version": "frc-integration-shadow-validation/1",
+  "validated_utc": "2026-10-14T01:44:27Z",
+  "source_baseline": "93d14ba6ae7833e4bd0981f32ced0ca198845bee",
+  "custom_vision_schema_source_commit": "40c898d543c6b9eae2687cc0d3b5d24a92ffb172",
+  "full_suite": {
+    "tests_passed": 414,
+    "duration_s": 5.2,
+    "command": "OMP_NUM_THREADS=1 PYTHONPATH=/tmp/frc-nt4-test-deps python -m pytest -q",
+    "python": "3.12.14",
+    "platform": "macOS ARM64"
+  },
+  "native_nt4_test_dependencies": {
+    "pyntcore": "2024.3.2.1",
+    "robotpy-wpinet": "2024.3.2.1",
+    "robotpy-wpiutil": "2024.3.2.1"
+  },
+  "verified_faults": [
+    "SIGSTOP during bounded large IPC send",
+    "provider stall/crash/kill/restart",
+    "IPC overload/cancellation",
+    "oversized IPC messages",
+    "source/native queue saturation",
+    "boot retirement/reconnect adoption",
+    "trace disconnect/loss/expiry/new-frame race",
+    "slow-drip frame timeout",
+    "bounded server shutdown",
+    "native independent NT4 clients"
+  ],
+  "independent_vision_observations_during_endpoint_stall_kill_restart": 40,
+  "independent_review": "trace fence and transport deadline findings fixed; deterministic reproductions verified by separate Java transport reviewer; no remaining material findings",
+  "scope": "synthetic simulation/replay/shadow; no hardware deployment or live actuation",
+  "limits": [
+    "fixed fixture clock is not a live robot mapping",
+    "no calibrated real FRC learned model or device-load qualification",
+    "uncooperative trusted server handler may remain in one daemon; bounded shutdown does not forcibly stop a Python callback",
+    "IPC child cleanup separate <=100ms budget; OS process-tree/memory supervision remains required for hardware"
+  ],
+  "changed_file_sha256": {
+    "README.md": "14752aa86cb5e0c1c0494d7b8d8994957f3746779ae600ce92bba5a4fbd8062f",
+    "docs/INTEGRATION_SHADOW.md": "1dfe6772b1221ee087826e8be5995d91573ed3498be0231ad7accf7c5f6792b3",
+    "docs/SHADOW_RUNBOOK.md": "c5f503e2ed817d8ce62c8687750664961fb78eb7fd91fb2859e918aa0620ae99",
+    "frc_world_model/_contracts/custom-vision-schema2/custom-vision-schema2-2026.1.json": "0d5edf4f3eb7c6091d343fe4229147d7fac0c2aa210bf602365c841c259b36e5",
+    "frc_world_model/_contracts/custom-vision-schema2/multitag.json": "3ccfb74af2e3aa2a3c2de3bbc1d8d49b0fa69d494fbb5c929e62ddda86fabfbd",
+    "frc_world_model/_contracts/custom-vision-schema2/objects_compact_covariance_selection.json": "c0e5c0ea9241423e1d3aa8fe19373931cf3fab080ced9af2b9021d9eaf6fc6d9",
+    "frc_world_model/_contracts/custom-vision-schema2/schema2.json": "6565ccd1984efb47579b7f97940fe7d818289eac969ce4ed44b72bc10d85a966",
+    "frc_world_model/shadow_process.py": "f37f8b93b038f07556709c9c4280154334fd788aa8e88b00c5222bbecae15344",
+    "frc_world_model/shadow_runtime.py": "1a8a0b1711e6d77908c6c1599fd3650ad28af45a80f4dcbb37ab02a7bdf0b613",
+    "frc_world_model/transport.py": "cb36e2f3cc4cb1b0fbef6245cb231a1d69cc1d68d321d9b039a103a9f6544a87",
+    "frc_world_model/vision_inbox.py": "035bb2c30a917b43c5c989aeebdf291406ced0fc63bfe98426d2c9fce5e1260a",
+    "frc_world_model/vision_nt4.py": "43313dbff9d19ffc590a93085d8de542b2798b3c1d3b26094a89f4df4ba919f9",
+    "pyproject.toml": "c080ed41def1c0545e27fed46004f6b1b34883ab967dd671c8c92088b40a1303",
+    "requirements-vision-nt4-test.lock": "9e01c1fbca2feb30b5c59637880d5aa056a30fd16fccb2846793ab18652fd0c3",
+    "tests/test_shadow_process.py": "5ff675d75f39749f562061b3775e47b9569073f3040aa5dae02514a08e5ee2dd",
+    "tests/test_shadow_runtime.py": "2b42b044e804cb58d9472758e628322cb964e8538661cddd721b02f0becf70d4",
+    "tests/test_transport.py": "e8b04cb2076929253521449d355dc3fe2bc18744e3daf5f3e4e87a3371901ff5",
+    "tests/test_vision_inbox.py": "60078e18d328a3c855d6d01b69180a2f728b3d0754a67b6cab26054e5abbb43f",
+    "tests/test_vision_nt4_native.py": "69b5d20229c7b394716c3f65ca193312dfa7b1e359607559d31583b164e27440",
+    "tests/test_vision_subscription.py": "0cccf43482a3a0a55180787a1aa9378663cbf35a5ca4cbfdb843acbea5b25b7a",
+    "tools/serve_shadow.py": "78c0351642f280827017ab1ee2686a6f75f2e901fc4ecaea6a60444e7163447b"
+  },
+  "actual_checkout_verification": {
+    "tests_passed": 414,
+    "duration_s": 5.46,
+    "git_diff_check": "passed",
+    "owned_model_test_processes_reaped": true
+  },
+  "wheel_verification": {
+    "path": "/tmp/frc-model-final-wheels/frc_world_model-0.1.0-py3-none-any.whl",
+    "sha256": "8a8a10d4ee37822354b938327f998cb086e30cbeb2f88ce9bcb789d0cc0441fb",
+    "packaged_import_and_schema_pins": "passed"
+  }
+}

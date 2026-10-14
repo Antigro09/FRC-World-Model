@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:custom-vision:custom-vision-schema2-2026.1",
+  "title": "Custom Vision schema 2 additive 2026.1 profile",
+  "allOf": [
+    {
+      "$ref": "urn:custom-vision:schema2"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "protocol_profile": {
+          "const": "custom-vision-schema2-2026.1"
+        },
+        "packet_seq": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "calibration_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mount_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "field_layout_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "timing": {
+          "type": "object",
+          "properties": {
+            "clock_domain": {
+              "const": "nt_server"
+            },
+            "timestamp_unit": {
+              "const": "us"
+            },
+            "capture_event": {
+              "const": "host_frame_read_complete"
+            },
+            "capture_correction_verified": {
+              "type": "boolean"
+            },
+            "capture_correction_uncertainty_ms": {
+              "anyOf": [
+                {
+                  "type": "number",
+                  "minimum": 0
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "clock_domain",
+            "timestamp_unit",
+            "capture_event",
+            "capture_correction_verified",
+            "capture_correction_uncertainty_ms"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "protocol_profile",
+        "packet_seq",
+        "calibration_revision",
+        "mount_revision",
+        "field_layout_revision"
+      ],
+      "additionalProperties": true
+    },
+    {
+      "if": {
+        "properties": {
+          "connected": {
+            "const": false
+          }
+        },
+        "required": [
+          "connected"
+        ]
+      },
+      "then": {
+        "properties": {
+          "detections": {
+            "maxItems": 0
+          },
+          "capture_server_us": {
+            "type": "null"
+          },
+          "time_sync_valid": {
+            "const": false
+          },
+          "localization": {
+            "properties": {
+              "valid": {
+                "const": false
+              },
+              "field_to_camera": {
+                "type": "null"
+              },
+              "field_to_robot": {
+                "type": "null"
+              }
+            }
+          },
+          "objects": {
+            "properties": {
+              "valid": {
+                "const": false
+              },
+              "targets": {
+                "maxItems": 0
+              },
+              "selected_track_id": {
+                "type": "null"
+              }
+            }
+          },
+          "poi": {
+            "properties": {
+              "valid": {
+                "const": false
+              },
+              "targets": {
+                "maxItems": 0
+              },
+              "selected_name": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

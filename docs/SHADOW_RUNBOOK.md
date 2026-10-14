@@ -99,4 +99,6 @@ physical covariance and abstention, on-device coexistence/latency evidence,
 shadow logs proving no command influence, and explicit approval.
 Executed-action logs alone do not establish counterfactual candidate ranking or
 closed-loop safety. Tracking/planning/interlocks and authoritative robot facts
-remain owned by their respective components. Actual robot integration is on hold.
+remain owned by their respective components. Software integration is limited to simulation/replay/shadow. Hardware deployment
+and live actuation remain on hold. See `INTEGRATION_SHADOW.md` for the independent
+vision inbox, process supervision and localhost endpoint checks.

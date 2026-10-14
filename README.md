@@ -1,8 +1,8 @@
 # FRC-World-Model
 
 Bounded adaptive task recommendations and frozen action-conditioned prediction
-for **offline replay and shadow review**. Robot-code integration, deployment and motion remain
-on hold. Source: [Antigro09/FRC-World-Model](https://github.com/Antigro09/FRC-World-Model).
+for **offline replay and shadow review**. Software integration is limited to simulation, replay and shadow review.
+Hardware deployment and motion remain on hold. Source: [Antigro09/FRC-World-Model](https://github.com/Antigro09/FRC-World-Model).
 
 The decision service proposes which supplied high-level task to consider next.
 It ranks pickup, score, transit and hold candidates using measured prerequisites,
@@ -27,6 +27,7 @@ Task success, completion time and mechanism outcomes remain unknown.
 The policy and scene above are synthetic software fixtures. They are not robot
 physical parameters. The replay output saves its boot-fenced request and reply;
 `--loopback` additionally exercises bounded localhost NDJSON. See
+[independent vision and process integration](docs/INTEGRATION_SHADOW.md),
 [decision interface and integration handoff](docs/DECISION_SUPPORT.md),
 [wire semantics](contracts/decision-support-v1/DECISION_CONTRACT.md), and
 [offline task data/evaluation](docs/DECISION_LEARNING.md).
